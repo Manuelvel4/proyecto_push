@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name">Zombicide Suport</string>
+    <string name="Sala">Sala</string>
+
+    <string name="title_activity_fullcreen">FullcreenActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="Nombre">Nombre</string>
+    <string name="NPersonajes">Nº Personajes</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="Socorrista">Socorrista</string>
+    <string name="mas1accion">+1 acción</string>
+    <string name="mas1acciónDeCombateADistancia">+1 acción de combate a distancia</string>
+    <string name="mas1aLasTiradasCuerpoACuerpo">+1 a las tiradas: Cuerpo a cuerpo</string>
+    <string name="mas1accionDeCombateGratuita">+1 acción de combate gratuita</string>
+    <string name="mas1aLasTiradasADistancia">+1 a las tiradas: A distancia</string>
+    <string name="LiderNato">Líder nato</string>
+    <string name="EmpezarConBateBeisbol">Empieza con un bate de béisbol</string>
+    <string name="mas1dadoCuerpoACuerpo">+1 dado cuerpo a cuerpo</string>
+    <string name="Empujon">Empujón</string>
+    <string name="dosZonasPorAccionDeMovimiento">2 zonas por acción de movimiento</string>
+    <string name="mas1alasTiradasDeCombate">+1 a las tiradas de: combate</string>
+    <string name="mas1accionDeMovimientoGratuita">+1 acción de movimiento gratuita</string>
+    <string name="mas1accionDeCombateCuerpoACuerpoGratuita">+1acción cuerpo a cuerpo gratuita</string>
+    <string name="mas1dadoCombate">+1 dado: Combate</string>
+    <string name="Ambidiestra">Ambidiestra</string>
+    <string name="Afortunada">Afortunada</string>
+    <string name="seisEnElDadoMas1DadoADistancia">+ en el dado: +1 dado a distancia</string>
+    <string name="Amano">A mano</string>
+    <string name="seisEnElDadoMas1DadoCuerpoACuerpo">6 en el dado: +1 dado cuerpo a cuerpo</string>
+    <string name="DisparoABocajarro">Disparo a bocajarro</string>
+    <string name="mas1accionADistanciaGratuita">+1 acción a distancia gratuita</string>
+    <string name="Escurridiza">Escurridiza</string>
+    <string name="Provocacion">Provocación</string>
+    <string name="Escurridizo">Escurridizo</string>
+    <string name="mas1AlDañoCuerpoACuerpo">+1 al daño: Cuerpo a cuerpo</string>
+    <string name="EsoEsTodoLoQueTienes">¿Eso es todo lo que tienes?</string>
+    <string name="seisEnElDadoMas1DadoDeCombate">6 en el dado: +1 dado de combate</string>
+    <string name="FrenesiCuerpoACuerpo">Frenesí: Cuerpo a cuerpo</string>
+    <string name="FrenesiCombate">Frenesí: Combate</string>
+    <string name="SuperFuerza">Súper fuerza</string>
+    <string name="Regeneracion">Regeneración</string>
+    <string name="FrenesiAdistancia">Frenesí: A distancia</string>
+    <string name="SegadoraCombate">Segadora: Combate</string>
+    <string name="mas1dadoADistancia">+1 dado: A distancia</string>
+    <string name="VinculoZombi">Vínculo zombi</string>
+</resources>

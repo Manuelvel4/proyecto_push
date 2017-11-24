@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="60dp"
+    android:layout_height="70dp">
+
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="60dp"
+        android:layout_height="20dp"
+        android:background="@drawable/tabla"
+        android:text="TextView"
+        android:textAlignment="center"
+        android:textColor="@android:color/black" />
+
+    <ImageView
+        android:id="@+id/foto"
+        android:layout_width="60dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/calavera" />
+
+</LinearLayout>

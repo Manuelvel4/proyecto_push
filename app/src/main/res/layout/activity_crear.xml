@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zombicidefondo"
+    tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.CrearActivity">
+
+    <Button
+        android:id="@+id/button13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button12"
+        android:layout_alignBottom="@+id/button12"
+        android:layout_toStartOf="@+id/button12"
+        android:onClick="Cancelar"
+        android:text="Cancelar" />
+
+    <Button
+        android:id="@+id/button12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Nombre"
+        android:layout_marginStart="85dp"
+        android:layout_marginTop="54dp"
+        android:layout_toEndOf="@+id/textView12"
+        android:onClick="Aceptar"
+        android:text="Aceptar" />
+
+    <EditText
+        android:id="@+id/Nombre"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:textColor="@android:color/black"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Pedro"
+        android:layout_below="@+id/Sala"
+        android:layout_toEndOf="@+id/textView12" />
+
+    <EditText
+        android:id="@+id/Sala"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Partida rápida"
+        android:textColor="@android:color/black"
+        android:layout_above="@+id/textView12"
+        android:layout_toEndOf="@+id/textView12"
+        android:layout_marginBottom="11dp" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/tabla"
+        android:text="Nombre"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:layout_marginStart="30dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:background="@drawable/tabla"
+        android:text="Crear sala"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:layout_alignTop="@+id/Sala"
+        android:layout_toStartOf="@+id/Sala" />
+</RelativeLayout>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/zombicidefondo"
+    tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.SelectionActivity">
+
+
+    <ListView
+        android:layout_width="200dp"
+        android:layout_height="105dp"
+        android:layout_below="@+id/Sala"
+        android:layout_toStartOf="@+id/ListaPersonajes"
+        android:id="@+id/ViewUsuarios" />
+
+    <RelativeLayout
+        android:id="@+id/Personaje1"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Personaje2"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="15dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Personaje3"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="15dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Personaje4"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="90dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Personaje5"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="90dp">
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/Personaje6"
+        android:layout_width="60dp"
+        android:layout_height="70dp"
+        android:layout_below="@+id/Personajes"
+        android:layout_marginLeft="170dp"
+        android:layout_marginTop="90dp">
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ListaPersonajes"
+        android:layout_width="310dp"
+        android:layout_height="70dp"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:background="@drawable/ladrillos"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/Personaje3" />
+
+    <Button
+        android:id="@+id/Atras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HabRoja3"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:onClick="Atras"
+        android:text="atras" />
+
+    <Button
+        android:id="@+id/Empezar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Empezar"
+        android:layout_below="@+id/HabRoja3"
+        android:layout_toEndOf="@+id/Atras"
+        android:layout_marginTop="10dp" />
+
+    <ImageView
+        android:id="@+id/DescripcionPersonaje"
+        android:layout_width="150dp"
+        android:layout_height="210dp"
+        android:saveEnabled="false"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/pwatts"
+        android:layout_below="@+id/ListaPersonajes"
+        android:layout_alignStart="@+id/ListaPersonajes" />
+
+    <TextView
+        android:id="@+id/HabAzul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textSize="11dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/ListaPersonajes"
+        android:layout_toEndOf="@+id/DescripcionPersonaje" />
+
+    <TextView
+        android:id="@+id/HabAmarilla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFEE58"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_below="@+id/HabAzul"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/HabNaranja1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/HabAmarilla"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:background="@android:color/holo_orange_dark"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/HabNaranja2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_below="@+id/HabNaranja1"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/HabRoja1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_below="@+id/HabNaranja2"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/HabRoja2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_below="@+id/HabRoja1"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/HabRoja3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_below="@+id/HabRoja2"
+        android:layout_toEndOf="@+id/DescripcionPersonaje"
+        android:layout_marginTop="5dp" />
+
+    <TextView
+        android:id="@+id/Personajes"
+        android:layout_width="100dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="49dp"
+        android:background="@drawable/tabla"
+        android:text="Personajes"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/ViewUsuarios"
+        android:layout_alignStart="@+id/ViewUsuarios" />
+
+    <TextView
+        android:id="@+id/Sala"
+        android:layout_width="200dp"
+        android:layout_height="20dp"
+        android:background="@drawable/tabla"
+        android:text="Personajes"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/ListaPersonajes"
+        android:layout_alignStart="@+id/ViewUsuarios" />
+
+    <CheckBox
+        android:id="@+id/ModoZombie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Modo Zombie"
+        android:layout_below="@+id/DescripcionPersonaje"
+        android:layout_alignStart="@+id/DescripcionPersonaje" />
+
+</RelativeLayout>

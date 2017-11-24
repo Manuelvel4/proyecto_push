@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.MainActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/zombicidefondo"
+        tools:layout_editor_absoluteY="-2dp" />
+
+    <Button
+        android:id="@+id/button_crea"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/button_carga"
+        android:layout_alignLeft="@+id/button_carga"
+        android:layout_alignStart="@+id/button_carga"
+        android:background="@drawable/efecto_btn"
+        android:fontFamily="cursive"
+        android:onClick="Crear"
+        android:text="   Crea"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+    <Button
+        android:id="@+id/button_carga"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_above="@+id/button_enter"
+        android:layout_alignLeft="@+id/button_enter"
+        android:layout_alignStart="@+id/button_enter"
+        android:background="@drawable/efecto_btn"
+        android:fontFamily="cursive"
+        android:text="   Carga"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/button_enter"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:background="@drawable/efecto_btn"
+        android:fontFamily="cursive"
+        android:text="Entra"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Button"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+
+</RelativeLayout>

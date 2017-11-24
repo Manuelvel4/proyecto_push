@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/calavera"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/calavera"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity
+            android:name=".SelectionActivity"
+            android:screenOrientation="sensorLandscape"></activity>
+        <activity
+            android:name=".CardsActivity"
+            android:screenOrientation="sensorLandscape">
+            >
+        </activity>
+        <activity
+            android:name=".IntercambioActivity"
+            android:screenOrientation="sensorLandscape">
+            >
+        </activity>
+        <activity
+            android:name=".CrearActivity"
+            android:screenOrientation="sensorLandscape">
+        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="sensorLandscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

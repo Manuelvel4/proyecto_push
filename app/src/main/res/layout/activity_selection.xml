@@ -22,6 +22,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/Personaje1Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+                        android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje1foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -32,6 +47,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/Personaje2Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje2foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -42,6 +72,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="170dp"
         android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/Personaje3Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje3foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -52,6 +97,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="90dp">
+        <TextView
+            android:id="@+id/Personaje4Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje4foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -62,6 +122,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="90dp">
+        <TextView
+            android:id="@+id/Personaje5Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje5foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 
@@ -72,6 +147,21 @@
         android:layout_below="@+id/Personajes"
         android:layout_marginLeft="170dp"
         android:layout_marginTop="90dp">
+        <TextView
+            android:id="@+id/Personaje6Nombre"
+            android:layout_width="60dp"
+            android:layout_height="20dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@android:color/black" />
+
+        <ImageView
+            android:id="@+id/Personaje6foto"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

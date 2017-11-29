@@ -44,14 +44,14 @@
         android:id="@+id/Sala"
         android:layout_width="300dp"
         android:layout_height="40dp"
+        android:layout_above="@+id/textView12"
+        android:layout_marginBottom="12dp"
+        android:layout_toEndOf="@+id/textView12"
         android:background="@android:color/white"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Partida rápida"
-        android:textColor="@android:color/black"
-        android:layout_above="@+id/textView12"
-        android:layout_toEndOf="@+id/textView12"
-        android:layout_marginBottom="11dp" />
+        android:text="Sala 3"
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/textView12"

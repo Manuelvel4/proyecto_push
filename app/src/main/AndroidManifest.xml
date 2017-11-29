@@ -11,7 +11,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
             android:name=".SelectionActivity"
-            android:screenOrientation="sensorLandscape"></activity>
+            android:screenOrientation="sensorLandscape" />
         <activity
             android:name=".CardsActivity"
             android:screenOrientation="sensorLandscape">
@@ -24,8 +24,7 @@
         </activity>
         <activity
             android:name=".CrearActivity"
-            android:screenOrientation="sensorLandscape">
-        </activity>
+            android:screenOrientation="sensorLandscape"></activity>
         <activity
             android:name=".MainActivity"
             android:screenOrientation="sensorLandscape">
@@ -35,6 +34,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".GameActivity"></activity>
     </application>
 
 </manifest>

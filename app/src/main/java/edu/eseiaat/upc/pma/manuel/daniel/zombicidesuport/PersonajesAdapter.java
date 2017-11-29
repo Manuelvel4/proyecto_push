@@ -2,7 +2,9 @@ package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -10,11 +12,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.ViewHolder> implements View.OnClickListener{
+public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.ViewHolder> implements View.OnClickListener,View.OnLongClickListener{
 
     private List ListaPersonajes;
     private Context context;
     private View.OnClickListener listener;
+    private View.OnLongClickListener longlistener;
 
     public PersonajesAdapter(Context c, List<Personaje> list) {
         this.context = c;
@@ -28,6 +31,7 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.personajes, parent, false);
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);
+        v.setOnLongClickListener(this);
         return vh;
     }
 
@@ -38,12 +42,11 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
         holder.nombre.setText(item.getNombre());
     }
 
-
-
     @Override
     public int getItemCount() {
         return ListaPersonajes.size();
     }
+
 
     public void setOnClickListener(View.OnClickListener listener){
         this.listener=listener;
@@ -53,6 +56,18 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
         if(listener!=null){
             listener.onClick(view);
         }
+    }
+
+
+    public void setOnLongClickListener(View.OnLongClickListener longlistener){
+        this.longlistener=longlistener;
+    }
+    @Override
+    public boolean onLongClick(View view) {
+        if(longlistener!=null){
+            return longlistener.onLongClick(view);
+        }
+        return false;
     }
 
 

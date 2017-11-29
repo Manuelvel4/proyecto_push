@@ -217,27 +217,27 @@ public class SelectionActivity extends AppCompatActivity{
         Personaje p = listaPersonajes.get(idPersonaje);
         if (ps==1){
             p1Nombre.setText(p.getNombre());
-            p1Nombre.setBackground(getDrawable(R.drawable.madera));
+            p1Nombre.setBackground(getDrawable(R.drawable.tabla));
             p1Foto.setImageDrawable(p.getCara());
         }else if (ps==2){
             p2Nombre.setText(p.getNombre());
-            p2Nombre.setBackground(getDrawable(R.drawable.madera));
+            p2Nombre.setBackground(getDrawable(R.drawable.tabla));
             p2Foto.setImageDrawable(p.getCara());
         }else if (ps==3) {
             p3Nombre.setText(p.getNombre());
-            p3Nombre.setBackground(getDrawable(R.drawable.madera));
+            p3Nombre.setBackground(getDrawable(R.drawable.tabla));
             p3Foto.setImageDrawable(p.getCara());
         }else if (ps==4) {
             p4Nombre.setText(p.getNombre());
-            p4Nombre.setBackground(getDrawable(R.drawable.madera));
+            p4Nombre.setBackground(getDrawable(R.drawable.tabla));
             p4Foto.setImageDrawable(p.getCara());
         }else if (ps==5) {
             p5Nombre.setText(p.getNombre());
-            p5Nombre.setBackground(getDrawable(R.drawable.madera));
+            p5Nombre.setBackground(getDrawable(R.drawable.tabla));
             p5Foto.setImageDrawable(p.getCara());
         }else if (ps==6) {
             p6Nombre.setText(p.getNombre());
-            p6Nombre.setBackground(getDrawable(R.drawable.madera));
+            p6Nombre.setBackground(getDrawable(R.drawable.tabla));
             p6Foto.setImageDrawable(p.getCara());
         }
     }

@@ -15,6 +15,7 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class SelectionActivity extends AppCompatActivity{
     private PersonajesAdapter adapterPersonajes;
     private ArrayAdapter<String> adapterUsuarios;
     private LinearLayoutManager linlayoutmanager;
+    private TableLayout tableLayout;
     private ImageView descripcionPersonaje;
     private TextView habAzul,habAmarilla, habNaranja1, habNaranja2, habRoja1, habRoja2,habRoja3;
     private CheckBox modoZombie;
@@ -64,8 +66,9 @@ public class SelectionActivity extends AppCompatActivity{
         viewUsuarios.setAdapter(adapterUsuarios);
 
         listaPersonajes=new ArrayList<>();
+
         viewPersonajes =(RecyclerView)findViewById(R.id.ListaPersonajes);
-        linlayoutmanager =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true);
+        linlayoutmanager =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         viewPersonajes.setLayoutManager(linlayoutmanager);
         CrearPersonajes();
         PersonajeSeleccionado();
@@ -74,13 +77,19 @@ public class SelectionActivity extends AppCompatActivity{
 
         listaPersonajesSelec =new ArrayList<>();
         viewPersonajesSelec =(RecyclerView)findViewById(R.id.ListaSeleccionados);
-        linlayoutmanager =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true);
-        viewPersonajes.setLayoutManager(linlayoutmanager);
+        linlayoutmanager=new LinearLayoutManager(this);
+        viewPersonajesSelec.setLayoutManager(linlayoutmanager);
         adapterPersonajesSelec =new PersonajesAdapter(this,listaPersonajesSelec);
         viewPersonajesSelec.setAdapter(adapterPersonajesSelec);
 
 
-
+        viewPersonajesSelec.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View view, DragEvent dragEvent) {
+                PersonajeEscogido(view,dragEvent);
+                return true;
+            }
+        });
         modoZombie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,7 +128,7 @@ public class SelectionActivity extends AppCompatActivity{
         });
     }
 
-    private void PersonajeEscogido(View v, DragEvent event, int ps) {
+    private void PersonajeEscogido(View v, DragEvent event) {
         switch (event.getAction()) {
             case DragEvent.ACTION_DRAG_STARTED:
                 v.setBackgroundColor(getColor(android.R.color.holo_green_light));
@@ -131,7 +140,10 @@ public class SelectionActivity extends AppCompatActivity{
                 v.setBackgroundColor(getColor(android.R.color.holo_green_light));
                 break;
             case DragEvent.ACTION_DROP:
-                listaPersonajesSelec.add(listaPersonajes.get(idPersonaje));
+                Personaje p=listaPersonajes.get(idPersonaje);
+                Drawable cara=p.getCara();
+                String nombre=p.getNombre();
+                listaPersonajesSelec.add(new Personaje (nombre,cara));
                 adapterPersonajesSelec.notifyDataSetChanged();
                 break;
             case DragEvent.ACTION_DRAG_ENDED:

@@ -26,6 +26,11 @@ public class Personaje {
         this.cara = cara;
     }
 
+    public Personaje(String nombre, Drawable cara) {
+        this.nombre = nombre;
+        this.cara = cara;
+    }
+
     public String getNombre() {
         return nombre;
     }

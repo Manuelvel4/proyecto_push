@@ -8,162 +8,22 @@
     tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.SelectionActivity">
 
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ListaSeleccionados"
+        android:layout_width="200dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="25dp"
+        android:orientation="horizontal"
+        android:scrollbars="vertical"
+        android:layout_alignTop="@+id/HabNaranja1"
+        android:layout_alignParentStart="true" />
+
     <ListView
         android:layout_width="200dp"
         android:layout_height="105dp"
+        android:id="@+id/ViewUsuarios"
         android:layout_below="@+id/Sala"
-        android:layout_toStartOf="@+id/ListaPersonajes"
-        android:id="@+id/ViewUsuarios" />
-
-    <RelativeLayout
-        android:id="@+id/Personaje1"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp">
-        <TextView
-            android:id="@+id/Personaje1Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-                        android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje1foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Personaje2"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="15dp">
-        <TextView
-            android:id="@+id/Personaje2Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje2foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Personaje3"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="15dp">
-        <TextView
-            android:id="@+id/Personaje3Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje3foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Personaje4"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="90dp">
-        <TextView
-            android:id="@+id/Personaje4Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje4foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Personaje5"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="90dp">
-        <TextView
-            android:id="@+id/Personaje5Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje5foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/Personaje6"
-        android:layout_width="60dp"
-        android:layout_height="70dp"
-        android:layout_below="@+id/Personajes"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="90dp">
-        <TextView
-            android:id="@+id/Personaje6Nombre"
-            android:layout_width="60dp"
-            android:layout_height="20dp"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="@android:color/black" />
-
-        <ImageView
-            android:id="@+id/Personaje6foto"
-            android:layout_width="60dp"
-            android:layout_height="50dp"
-            android:scaleType="fitCenter"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true" />
-
-    </RelativeLayout>
+        android:layout_alignStart="@+id/ListaSeleccionados" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ListaPersonajes"
@@ -173,9 +33,9 @@
         android:scrollbars="horizontal"
         android:background="@drawable/ladrillos"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="57dp"
         android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/Personaje3" />
+        android:layout_toEndOf="@+id/ListaSeleccionados" />
 
     <Button
         android:id="@+id/Atras"
@@ -301,13 +161,13 @@
         android:id="@+id/Personajes"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_marginStart="49dp"
+        android:layout_marginStart="47dp"
         android:background="@drawable/tabla"
         android:text="Personajes"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:layout_below="@+id/ViewUsuarios"
-        android:layout_alignStart="@+id/ViewUsuarios" />
+        android:layout_above="@+id/ListaSeleccionados"
+        android:layout_alignStart="@+id/ListaSeleccionados" />
 
     <TextView
         android:id="@+id/Sala"

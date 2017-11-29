@@ -7,21 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,26 +35,9 @@ public class SelectionActivity extends AppCompatActivity{
     private TextView habAzul,habAmarilla, habNaranja1, habNaranja2, habRoja1, habRoja2,habRoja3;
     private CheckBox modoZombie;
     private int idPersonaje=0;
-
-    private TextView p1Nombre;
-    private ImageView p1Foto;
-    private TextView p2Nombre;
-    private ImageView p2Foto;
-    private TextView p3Nombre;
-    private ImageView p3Foto;
-    private TextView p4Nombre;
-    private ImageView p4Foto;
-    private TextView p5Nombre;
-    private ImageView p5Foto;
-    private TextView p6Nombre;
-    private ImageView p6Foto;
-    private RelativeLayout p1;
-    private RelativeLayout p2;
-    private RelativeLayout p3;
-    private RelativeLayout p4;
-    private RelativeLayout p5;
-    private RelativeLayout p6;
-
+    private ArrayList<Personaje> listaPersonajesSelec;
+    private RecyclerView viewPersonajesSelec;
+    private PersonajesAdapter adapterPersonajesSelec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,18 +54,6 @@ public class SelectionActivity extends AppCompatActivity{
         habRoja3=(TextView) findViewById(R.id.HabRoja3);
         modoZombie=(CheckBox)findViewById(R.id.ModoZombie);
 
-        p1Nombre=(TextView)findViewById(R.id.Personaje1Nombre);
-        p1Foto=(ImageView)findViewById(R.id.Personaje1foto);
-        p2Nombre=(TextView)findViewById(R.id.Personaje2Nombre);
-        p2Foto=(ImageView)findViewById(R.id.Personaje2foto);
-        p3Nombre=(TextView)findViewById(R.id.Personaje3Nombre);
-        p3Foto=(ImageView)findViewById(R.id.Personaje3foto);
-        p4Nombre=(TextView)findViewById(R.id.Personaje4Nombre);
-        p4Foto=(ImageView)findViewById(R.id.Personaje4foto);
-        p5Nombre=(TextView)findViewById(R.id.Personaje5Nombre);
-        p5Foto=(ImageView)findViewById(R.id.Personaje5foto);
-        p6Nombre=(TextView)findViewById(R.id.Personaje6Nombre);
-        p6Foto=(ImageView)findViewById(R.id.Personaje6foto);
 
         TextView Sala=(TextView)findViewById(R.id.Sala);
         ListView viewUsuarios=(ListView)findViewById(R.id.ViewUsuarios);
@@ -106,54 +72,14 @@ public class SelectionActivity extends AppCompatActivity{
         adapterPersonajes =new PersonajesAdapter(this,listaPersonajes);
         viewPersonajes.setAdapter(adapterPersonajes);
 
-        p1=(RelativeLayout)findViewById(R.id.Personaje1);
-        p1.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,1);
-                return true;
-            }
-        });
-        p2=(RelativeLayout)findViewById(R.id.Personaje2);
-        p2.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,2);
-                return true;
-            }
-        });
-        p3=(RelativeLayout)findViewById(R.id.Personaje3);
-        p3.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,3);
-                return true;
-            }
-        });
-        p4=(RelativeLayout)findViewById(R.id.Personaje4);
-        p4.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,4);
-                return true;
-            }
-        });
-        p5=(RelativeLayout)findViewById(R.id.Personaje5);
-        p5.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,5);
-                return true;
-            }
-        });
-        p6=(RelativeLayout)findViewById(R.id.Personaje6);
-        p6.setOnDragListener(new View.OnDragListener() {
-            @Override
-            public boolean onDrag(View v, DragEvent event) {
-                PersonajeEscogido(v,event,6);
-                return true;
-            }
-        });
+        listaPersonajesSelec =new ArrayList<>();
+        viewPersonajesSelec =(RecyclerView)findViewById(R.id.ListaSeleccionados);
+        linlayoutmanager =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true);
+        viewPersonajes.setLayoutManager(linlayoutmanager);
+        adapterPersonajesSelec =new PersonajesAdapter(this,listaPersonajesSelec);
+        viewPersonajesSelec.setAdapter(adapterPersonajesSelec);
+
+
 
         modoZombie.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -205,40 +131,13 @@ public class SelectionActivity extends AppCompatActivity{
                 v.setBackgroundColor(getColor(android.R.color.holo_green_light));
                 break;
             case DragEvent.ACTION_DROP:
-                Drop(ps);
+                listaPersonajesSelec.add(listaPersonajes.get(idPersonaje));
+                adapterPersonajesSelec.notifyDataSetChanged();
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 v.setBackgroundColor(getColor(android.R.color.transparent));
             default:
                 break;
-        }
-    }
-    private void Drop(int ps) {
-        Personaje p = listaPersonajes.get(idPersonaje);
-        if (ps==1){
-            p1Nombre.setText(p.getNombre());
-            p1Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p1Foto.setImageDrawable(p.getCara());
-        }else if (ps==2){
-            p2Nombre.setText(p.getNombre());
-            p2Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p2Foto.setImageDrawable(p.getCara());
-        }else if (ps==3) {
-            p3Nombre.setText(p.getNombre());
-            p3Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p3Foto.setImageDrawable(p.getCara());
-        }else if (ps==4) {
-            p4Nombre.setText(p.getNombre());
-            p4Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p4Foto.setImageDrawable(p.getCara());
-        }else if (ps==5) {
-            p5Nombre.setText(p.getNombre());
-            p5Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p5Foto.setImageDrawable(p.getCara());
-        }else if (ps==6) {
-            p6Nombre.setText(p.getNombre());
-            p6Nombre.setBackground(getDrawable(R.drawable.tabla));
-            p6Foto.setImageDrawable(p.getCara());
         }
     }
     private void PersonajeSeleccionado() {

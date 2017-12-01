@@ -9,11 +9,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.DragEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -37,10 +35,14 @@ public class SelectionActivity extends AppCompatActivity{
     private TextView habAzul,habAmarilla, habNaranja1, habNaranja2, habRoja1, habRoja2,habRoja3;
     private CheckBox modoZombie;
     private int idPersonaje=0;
+    private boolean personajeDrop =false;
+    private int idPersonajeSelec=0;
+    private boolean personajeSelecDrop=false;
     private ArrayList<Personaje> listaPersonajesSelec;
     private RecyclerView viewPersonajesSelec;
     private PersonajesAdapter adapterPersonajesSelec;
     private ImageView borrar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,15 @@ public class SelectionActivity extends AppCompatActivity{
                         v.setBackgroundColor(getColor(android.R.color.holo_red_light));
                         break;
                     case DragEvent.ACTION_DROP:
+
+                        if (personajeDrop=true){
+
+                        }
+                        if (personajeSelecDrop=true){
+                            listaPersonajesSelec.remove(idPersonajeSelec);
+                        }
+                        personajeDrop=false;
+                        personajeSelecDrop=false;
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         v.setBackgroundColor(getColor(android.R.color.transparent));
@@ -138,6 +149,7 @@ public class SelectionActivity extends AppCompatActivity{
             @Override
             public boolean onLongClick(View view) {
                 idPersonaje=viewPersonajes.getChildAdapterPosition(view);
+                personajeDrop=true;
                 PersonajeSeleccionado();
                 if (view.getAlpha()!=(float)0.5){
                     ClipData data = ClipData.newPlainText("", "");
@@ -149,6 +161,19 @@ public class SelectionActivity extends AppCompatActivity{
                 }
                 return false;
            }
+        });
+        adapterPersonajesSelec.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                idPersonajeSelec=viewPersonajesSelec.getChildAdapterPosition(view);
+                personajeSelecDrop=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                view.setAlpha((float)0.5);
+                return true;
+            }
         });
     }
 

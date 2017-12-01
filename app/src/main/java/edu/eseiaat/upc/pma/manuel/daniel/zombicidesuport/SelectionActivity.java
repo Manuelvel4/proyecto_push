@@ -40,6 +40,7 @@ public class SelectionActivity extends AppCompatActivity{
     private ArrayList<Personaje> listaPersonajesSelec;
     private RecyclerView viewPersonajesSelec;
     private PersonajesAdapter adapterPersonajesSelec;
+    private ImageView borrar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class SelectionActivity extends AppCompatActivity{
         habRoja2=(TextView) findViewById(R.id.HabRoja2);
         habRoja3=(TextView) findViewById(R.id.HabRoja3);
         modoZombie=(CheckBox)findViewById(R.id.ModoZombie);
+        borrar=(ImageView)findViewById(R.id.Borrar);
 
 
         TextView Sala=(TextView)findViewById(R.id.Sala);
@@ -77,12 +79,34 @@ public class SelectionActivity extends AppCompatActivity{
 
         listaPersonajesSelec =new ArrayList<>();
         viewPersonajesSelec =(RecyclerView)findViewById(R.id.ListaSeleccionados);
-        linlayoutmanager=new LinearLayoutManager(this);
+        linlayoutmanager=new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
         viewPersonajesSelec.setLayoutManager(linlayoutmanager);
         adapterPersonajesSelec =new PersonajesAdapter(this,listaPersonajesSelec);
         viewPersonajesSelec.setAdapter(adapterPersonajesSelec);
 
-
+        borrar.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_red_light));
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_red_dark));
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_red_light));
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        break;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        v.setBackgroundColor(getColor(android.R.color.transparent));
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
         viewPersonajesSelec.setOnDragListener(new View.OnDragListener() {
             @Override
             public boolean onDrag(View view, DragEvent dragEvent) {

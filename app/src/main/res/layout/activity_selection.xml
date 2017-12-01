@@ -8,10 +8,18 @@
     tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.SelectionActivity">
 
 
+    <ImageView
+        android:id="@+id/Borrar"
+        android:layout_width="210dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/papelera"
+        android:layout_below="@+id/HabRoja2"
+        android:layout_alignStart="@+id/ListaSeleccionados" />
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ListaSeleccionados"
-        android:layout_width="200dp"
-        android:layout_height="140dp"
+        android:layout_width="210dp"
+        android:layout_height="70dp"
         android:layout_marginStart="25dp"
         android:layout_alignTop="@+id/HabNaranja1"
         android:layout_alignParentStart="true" />
@@ -172,7 +180,7 @@
         android:layout_width="200dp"
         android:layout_height="20dp"
         android:background="@drawable/tabla"
-        android:text="Personajes"
+        android:text="Usuarios"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:layout_alignTop="@+id/ListaPersonajes"

@@ -194,6 +194,8 @@ public class SelectionActivity extends AppCompatActivity{
                 String nombre=p.getNombre();
                 listaPersonajesSelec.add(new Personaje (nombre,cara));
                 adapterPersonajesSelec.notifyDataSetChanged();
+                personajeDrop=false;
+                personajeSelecDrop=false;
                 break;
             case DragEvent.ACTION_DRAG_ENDED:
                 v.setBackgroundColor(getColor(android.R.color.transparent));

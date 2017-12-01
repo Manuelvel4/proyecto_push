@@ -109,6 +109,7 @@ public class SelectionActivity extends AppCompatActivity{
                         }
                         personajeDrop=false;
                         personajeSelecDrop=false;
+                        adapterPersonajesSelec.notifyDataSetChanged();
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         v.setBackgroundColor(getColor(android.R.color.transparent));
@@ -120,8 +121,29 @@ public class SelectionActivity extends AppCompatActivity{
         });
         viewPersonajesSelec.setOnDragListener(new View.OnDragListener() {
             @Override
-            public boolean onDrag(View view, DragEvent dragEvent) {
-                PersonajeEscogido(view,dragEvent);
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DRAG_STARTED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_green_light));
+                        break;
+                    case DragEvent.ACTION_DRAG_ENTERED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_green_dark));
+                        break;
+                    case DragEvent.ACTION_DRAG_EXITED:
+                        v.setBackgroundColor(getColor(android.R.color.holo_green_light));
+                        break;
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajes.get(idPersonaje);
+                        listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara()));
+                        adapterPersonajesSelec.notifyDataSetChanged();
+                        personajeDrop=false;
+                        personajeSelecDrop=false;
+                        break;
+                    case DragEvent.ACTION_DRAG_ENDED:
+                        v.setBackgroundColor(getColor(android.R.color.transparent));
+                    default:
+                        break;
+                };
                 return true;
             }
         });
@@ -171,38 +193,11 @@ public class SelectionActivity extends AppCompatActivity{
                 View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                 view.startDrag(data, shadowBuilder, view, 0);
                 //view.startDragAndDrop(data,shadowBuilder,view,0);
-                view.setAlpha((float)0.5);
                 return true;
             }
         });
     }
 
-    private void PersonajeEscogido(View v, DragEvent event) {
-        switch (event.getAction()) {
-            case DragEvent.ACTION_DRAG_STARTED:
-                v.setBackgroundColor(getColor(android.R.color.holo_green_light));
-                break;
-            case DragEvent.ACTION_DRAG_ENTERED:
-                v.setBackgroundColor(getColor(android.R.color.holo_green_dark));
-                break;
-            case DragEvent.ACTION_DRAG_EXITED:
-                v.setBackgroundColor(getColor(android.R.color.holo_green_light));
-                break;
-            case DragEvent.ACTION_DROP:
-                Personaje p=listaPersonajes.get(idPersonaje);
-                Drawable cara=p.getCara();
-                String nombre=p.getNombre();
-                listaPersonajesSelec.add(new Personaje (nombre,cara));
-                adapterPersonajesSelec.notifyDataSetChanged();
-                personajeDrop=false;
-                personajeSelecDrop=false;
-                break;
-            case DragEvent.ACTION_DRAG_ENDED:
-                v.setBackgroundColor(getColor(android.R.color.transparent));
-            default:
-                break;
-        }
-    }
     private void PersonajeSeleccionado() {
         Personaje p = listaPersonajes.get(idPersonaje);
         habAzul.setText(p.getHabAzul());

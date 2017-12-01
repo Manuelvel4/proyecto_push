@@ -30,7 +30,7 @@
         android:layout_height="70dp"
         android:background="@drawable/ladrillos"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="57dp"
+        android:layout_marginStart="5dp"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/ListaSeleccionados" />
 

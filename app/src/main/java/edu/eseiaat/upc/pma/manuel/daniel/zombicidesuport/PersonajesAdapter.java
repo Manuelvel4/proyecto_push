@@ -14,7 +14,7 @@ import java.util.List;
 
 public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.ViewHolder> implements View.OnClickListener,View.OnLongClickListener{
 
-    private List ListaPersonajes;
+    private List<Personaje> ListaPersonajes;
     private Context context;
     private View.OnClickListener listener;
     private View.OnLongClickListener longlistener;
@@ -29,6 +29,11 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
 
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.personajes, parent, false);
+        Personaje p = ListaPersonajes.get(i);
+        if(p.getNombre().equals("watts")){
+            v.setAlpha((float)0.5);
+        }
+
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);
         v.setOnLongClickListener(this);

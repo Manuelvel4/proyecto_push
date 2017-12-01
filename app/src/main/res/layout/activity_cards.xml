@@ -65,7 +65,7 @@
         android:text="Otros" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/carta1"
         android:layout_width="200dp"
         android:layout_height="250dp"
         android:scaleType="fitCenter"
@@ -81,7 +81,7 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/imageView2" />
+        android:layout_alignStart="@+id/carta1" />
 
     <ImageView
         android:id="@+id/imageView4"
@@ -90,7 +90,7 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/imageView2" />
+        android:layout_alignStart="@+id/carta1" />
 
     <ImageView
         android:id="@+id/imageView5"

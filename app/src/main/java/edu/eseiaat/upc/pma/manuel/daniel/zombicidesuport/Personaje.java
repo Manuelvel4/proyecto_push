@@ -12,6 +12,7 @@ import android.widget.ImageView;
 public class Personaje {
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
+    public boolean invisible;
 
     public Personaje(String nombre, String habAzul, String habAmarilla, String habNaranja1, String habNaranja2, String habRoja1, String habRoja2, String habRoja3, Drawable foto, Drawable cara) {
         this.nombre = nombre;
@@ -26,9 +27,18 @@ public class Personaje {
         this.cara = cara;
     }
 
-    public Personaje(String nombre, Drawable cara) {
+    public Personaje(String nombre, Drawable cara, boolean invisible) {
         this.nombre = nombre;
         this.cara = cara;
+        this.invisible = invisible;
+    }
+
+    public boolean isInvisible() {
+        return invisible;
+    }
+
+    public void setInvisible(boolean invisible) {
+        this.invisible = invisible;
     }
 
     public String getNombre() {

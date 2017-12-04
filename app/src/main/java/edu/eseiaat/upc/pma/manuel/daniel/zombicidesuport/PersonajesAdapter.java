@@ -30,9 +30,12 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
 
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.personajes, parent, false);
         Personaje p = ListaPersonajes.get(i);
-        if(p.getNombre().equals("watts")){
+        if(p.invisible==true){
             v.setAlpha((float)0.5);
+        }else{
+            v.setAlpha((float)1);
         }
+
 
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);

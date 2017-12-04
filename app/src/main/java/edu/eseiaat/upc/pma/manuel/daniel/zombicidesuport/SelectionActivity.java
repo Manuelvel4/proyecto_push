@@ -101,15 +101,15 @@ public class SelectionActivity extends AppCompatActivity{
                         break;
                     case DragEvent.ACTION_DROP:
 
-                        if (personajeDrop=true){
-
-                        }
-                        if (personajeSelecDrop=true){
+                        if (personajeSelecDrop==true){
                             listaPersonajesSelec.remove(idPersonajeSelec);
+                            adapterPersonajesSelec.notifyDataSetChanged();
                         }
+                        Personaje p=listaPersonajes.get(idPersonaje);
+                        p.setInvisible(false);
+                        adapterPersonajes.notifyDataSetChanged();
                         personajeDrop=false;
                         personajeSelecDrop=false;
-                        adapterPersonajesSelec.notifyDataSetChanged();
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
                         v.setBackgroundColor(getColor(android.R.color.transparent));
@@ -133,9 +133,11 @@ public class SelectionActivity extends AppCompatActivity{
                         v.setBackgroundColor(getColor(android.R.color.holo_green_light));
                         break;
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajes.get(idPersonaje);
-                        listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara()));
-                        adapterPersonajesSelec.notifyDataSetChanged();
+                        if (personajeDrop==true){
+                            Personaje p=listaPersonajes.get(idPersonaje);
+                            listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara(),false));
+                            adapterPersonajesSelec.notifyDataSetChanged();
+                        }
                         personajeDrop=false;
                         personajeSelecDrop=false;
                         break;
@@ -178,7 +180,9 @@ public class SelectionActivity extends AppCompatActivity{
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                     view.startDrag(data, shadowBuilder, view, 0);
                     //view.startDragAndDrop(data,shadowBuilder,view,0);
-                    view.setAlpha((float)0.5);
+                    Personaje p=listaPersonajes.get(idPersonaje);
+                    p.setInvisible(true);
+                    adapterPersonajes.notifyDataSetChanged();
                     return true;
                 }
                 return false;

@@ -137,6 +137,7 @@ public class SelectionActivity extends AppCompatActivity{
                             Personaje p=listaPersonajes.get(idPersonaje);
                             listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara(),false));
                             adapterPersonajesSelec.notifyDataSetChanged();
+                            viewPersonajesSelec.smoothScrollToPosition(listaPersonajesSelec.size()-1);
                         }
                         personajeDrop=false;
                         personajeSelecDrop=false;
@@ -173,14 +174,14 @@ public class SelectionActivity extends AppCompatActivity{
             @Override
             public boolean onLongClick(View view) {
                 idPersonaje=viewPersonajes.getChildAdapterPosition(view);
+                Personaje p=listaPersonajes.get(idPersonaje);
                 personajeDrop=true;
                 PersonajeSeleccionado();
-                if (view.getAlpha()!=(float)0.5){
+                if (!p.isInvisible()){
                     ClipData data = ClipData.newPlainText("", "");
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                     view.startDrag(data, shadowBuilder, view, 0);
                     //view.startDragAndDrop(data,shadowBuilder,view,0);
-                    Personaje p=listaPersonajes.get(idPersonaje);
                     p.setInvisible(true);
                     adapterPersonajes.notifyDataSetChanged();
                     return true;

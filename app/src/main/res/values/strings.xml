@@ -45,4 +45,13 @@
     <string name="SegadoraCombate">Segadora: Combate</string>
     <string name="mas1dadoADistancia">+1 dado: A distancia</string>
     <string name="VinculoZombi">Vínculo zombi</string>
+    <string name="Crear">Crear</string>
+    <string name="Cargar">Cargar</string>
+    <string name="Entrar">Entrar</string>
+    <string name="NombreSala">Nombre de la Sala</string>
+    <string name="Usuario">Usuario</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="Aceptar">Aceptar</string>
+    <string name="Personajes">Personajes</string>
+    <string name="ModoZombie">Modo zombie</string>
 </resources>

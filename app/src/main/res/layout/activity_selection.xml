@@ -51,16 +51,16 @@
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/DescripcionPersonaje"
         android:onClick="Atras"
-        android:text="atras" />
+        android:text="@string/Cancelar" />
 
     <Button
         android:id="@+id/Empezar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empezar"
         android:layout_below="@+id/HabRoja3"
+        android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/Atras"
-        android:layout_marginTop="10dp" />
+        android:text="@string/Aceptar" />
 
     <ImageView
         android:id="@+id/DescripcionPersonaje"
@@ -167,13 +167,13 @@
         android:id="@+id/Personajes"
         android:layout_width="100dp"
         android:layout_height="20dp"
+        android:layout_above="@+id/ListaSeleccionados"
+        android:layout_alignStart="@+id/ListaSeleccionados"
         android:layout_marginStart="47dp"
         android:background="@drawable/tabla"
-        android:text="Personajes"
+        android:text="@string/Personajes"
         android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:layout_above="@+id/ListaSeleccionados"
-        android:layout_alignStart="@+id/ListaSeleccionados" />
+        android:textColor="@android:color/black" />
 
     <TextView
         android:id="@+id/Sala"
@@ -190,8 +190,8 @@
         android:id="@+id/ModoZombie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Modo Zombie"
+        android:layout_alignStart="@+id/DescripcionPersonaje"
         android:layout_below="@+id/DescripcionPersonaje"
-        android:layout_alignStart="@+id/DescripcionPersonaje" />
+        android:text="@string/ModoZombie" />
 
 </RelativeLayout>

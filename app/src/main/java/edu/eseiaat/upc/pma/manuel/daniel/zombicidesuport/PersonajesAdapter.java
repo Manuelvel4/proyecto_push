@@ -29,14 +29,6 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
     public ViewHolder onCreateViewHolder(ViewGroup parent, int i) {
 
         final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.personajes, parent, false);
-        Personaje p = ListaPersonajes.get(i);
-        if(p.invisible==true){
-            v.setAlpha((float)0.5);
-        }else{
-            v.setAlpha((float)1);
-        }
-
-
         final ViewHolder vh = new ViewHolder(v);
         v.setOnClickListener(this);
         v.setOnLongClickListener(this);
@@ -48,6 +40,12 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
         Personaje item = (Personaje) ListaPersonajes.get(position);
         holder.cara.setImageDrawable(item.getCara());
         holder.nombre.setText(item.getNombre());
+        if(item.isInvisible()){
+            holder.cara.setAlpha((float)0.5);
+        }else{
+            holder.cara.setAlpha((float)1);
+        }
+
     }
 
     @Override

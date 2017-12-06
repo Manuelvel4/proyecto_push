@@ -42,6 +42,8 @@ public class SelectionActivity extends AppCompatActivity{
     private RecyclerView viewPersonajesSelec;
     private PersonajesAdapter adapterPersonajesSelec;
     private ImageView borrar;
+    private boolean[] visibilidad;
+    private List<Integer> union;
 
 
     @Override
@@ -70,6 +72,7 @@ public class SelectionActivity extends AppCompatActivity{
         viewUsuarios.setAdapter(adapterUsuarios);
 
         listaPersonajes=new ArrayList<>();
+        union=new ArrayList<>();
 
         viewPersonajes =(RecyclerView)findViewById(R.id.ListaPersonajes);
         linlayoutmanager =new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
@@ -101,13 +104,20 @@ public class SelectionActivity extends AppCompatActivity{
                         break;
                     case DragEvent.ACTION_DROP:
 
-                        if (personajeSelecDrop==true){
+                        if (personajeSelecDrop){
                             listaPersonajesSelec.remove(idPersonajeSelec);
-                            adapterPersonajesSelec.notifyDataSetChanged();
+                            Personaje p=listaPersonajes.get(union.get(idPersonajeSelec));
+                            p.setInvisible(false);
+                            union.remove(idPersonajeSelec);
+
                         }
-                        Personaje p=listaPersonajes.get(idPersonaje);
-                        p.setInvisible(false);
+                        if (personajeDrop){
+                            Personaje p=listaPersonajes.get(idPersonaje);
+                            p.setInvisible(false);
+                        }
+
                         adapterPersonajes.notifyDataSetChanged();
+                        adapterPersonajesSelec.notifyDataSetChanged();
                         personajeDrop=false;
                         personajeSelecDrop=false;
                         break;
@@ -135,9 +145,13 @@ public class SelectionActivity extends AppCompatActivity{
                     case DragEvent.ACTION_DROP:
                         if (personajeDrop==true){
                             Personaje p=listaPersonajes.get(idPersonaje);
+                            p.setInvisible(true);
+                            adapterPersonajes.notifyDataSetChanged();
+                            union.add(idPersonaje);
                             listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara(),false));
                             adapterPersonajesSelec.notifyDataSetChanged();
                             viewPersonajesSelec.smoothScrollToPosition(listaPersonajesSelec.size()-1);
+
                         }
                         personajeDrop=false;
                         personajeSelecDrop=false;
@@ -153,6 +167,7 @@ public class SelectionActivity extends AppCompatActivity{
         modoZombie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                GuardarInvisibles();
                 listaPersonajes.clear();
                 if (modoZombie.isChecked()==false) {
                     CrearPersonajes();
@@ -160,6 +175,7 @@ public class SelectionActivity extends AppCompatActivity{
                     CrearPersonajesZombies();
                 }
                 PersonajeSeleccionado();
+                CargarInvisibles();
                 adapterPersonajes.notifyDataSetChanged();
              }
         });
@@ -182,8 +198,6 @@ public class SelectionActivity extends AppCompatActivity{
                     View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
                     view.startDrag(data, shadowBuilder, view, 0);
                     //view.startDragAndDrop(data,shadowBuilder,view,0);
-                    p.setInvisible(true);
-                    adapterPersonajes.notifyDataSetChanged();
                     return true;
                 }
                 return false;
@@ -201,6 +215,23 @@ public class SelectionActivity extends AppCompatActivity{
                 return true;
             }
         });
+    }
+
+    private void CargarInvisibles() {
+        for (int i=0;i<listaPersonajes.size();i++){
+            Personaje p=listaPersonajes.get(i);
+            p.setInvisible(visibilidad[i]);
+        }
+
+    }
+
+    private void GuardarInvisibles() {
+        visibilidad=new boolean[listaPersonajes.size()];
+        for (int i=0;i<listaPersonajes.size();i++){
+            Personaje p=listaPersonajes.get(i);
+            visibilidad[i]=p.isInvisible();
+        }
+
     }
 
     private void PersonajeSeleccionado() {

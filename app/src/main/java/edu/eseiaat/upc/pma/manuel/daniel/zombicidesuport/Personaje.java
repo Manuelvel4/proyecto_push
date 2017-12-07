@@ -15,6 +15,7 @@ public class Personaje{
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
     public boolean invisible;
+    public boolean[] level;
 
     public Personaje(String nombre, String habAzul, String habAmarilla, String habNaranja1, String habNaranja2, String habRoja1, String habRoja2, String habRoja3, Drawable foto, Drawable cara) {
         this.nombre = nombre;
@@ -33,6 +34,14 @@ public class Personaje{
         this.nombre = nombre;
         this.cara = cara;
         this.invisible = invisible;
+    }
+
+    public boolean[] getLevel() {
+        return level;
+    }
+
+    public void setLevel(boolean[] level) {
+        this.level = level;
     }
 
     protected Personaje(Parcel in) {

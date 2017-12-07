@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -47,12 +48,26 @@ public class JuegoActivity extends AppCompatActivity {
         viewPersonajes.setAdapter(adapterPersonajes);
         idPersonaje=0;
         PersonajeSelec();
+
+        adapterPersonajes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                idPersonaje=viewPersonajes.getChildAdapterPosition(view);
+                PersonajeSelec();
+            }
+        });
     }
 
     private void ListaPersonajesSelec() {
+        boolean[] level=new boolean[6];
+        for (int i=0;i<level.length;i++){
+            level[i]=false;
+        }
         for (int i=0;i<union.length;i++){
             Personaje p=listaPersonajes.get(union[i]);
             listaPersonajesSelec.add(p);
+            Personaje ps=listaPersonajesSelec.get(i);
+            ps.setLevel(level);
         }
     }
 
@@ -65,6 +80,24 @@ public class JuegoActivity extends AppCompatActivity {
         habRoja1.setText(p.getHabRoja1());
         habRoja2.setText(p.getHabRoja2());
         habRoja3.setText(p.getHabRoja3());
+        if (!p.level[0]){
+            habAmarilla.setBackgroundColor(getColor(android.R.color.white));
+        }
+        if (!p.level[1]){
+            habNaranja1.setBackgroundColor(getColor(android.R.color.white));
+        }
+        if (!p.level[2]){
+            habNaranja2.setBackgroundColor(getColor(android.R.color.white));
+        }
+        if (!p.level[3]){
+            habRoja1.setBackgroundColor(getColor(android.R.color.white));
+        }
+        if (!p.level[4]){
+            habRoja2.setBackgroundColor(getColor(android.R.color.white));
+        }
+        if (!p.level[5]){
+            habRoja3.setBackgroundColor(getColor(android.R.color.white));
+        }
     }
     private void CrearPersonajes() {
         String nombre="watts";

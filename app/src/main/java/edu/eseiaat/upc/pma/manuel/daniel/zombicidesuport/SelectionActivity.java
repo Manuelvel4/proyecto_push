@@ -3,6 +3,7 @@ package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -399,10 +400,12 @@ public class SelectionActivity extends AppCompatActivity{
     }
 
     public void Aceptar(View view) {
+        int[] ps=new int[union.size()];
+        for (int i=0;i<union.size();i++){
+            ps[i]=union.get(i);
+        }
         Intent intent=new Intent(this,JuegoActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(JuegoActivity.KeyListaPersonajes, listaPersonajesSelec);
-        intent.putExtras(bundle);
+        intent.putExtra(JuegoActivity.KeyListaPersonajes, ps);
         startActivity(intent);
         finish();
     }

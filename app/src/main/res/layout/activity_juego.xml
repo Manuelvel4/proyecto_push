@@ -116,5 +116,101 @@
         android:scaleType="fitXY"
         android:layout_toEndOf="@+id/Carta2" />
 
+    <TextView
+        android:id="@+id/HabAzul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:text="+1 acción"
+        android:textAlignment="center"
+        android:textSize="11dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/ViewLevel"
+        android:layout_toEndOf="@+id/ViewPersonajes" />
+
+    <TextView
+        android:id="@+id/HabAmarilla"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#FFEE58"
+        android:text="+1 acción"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignBaseline="@+id/HabAzul"
+        android:layout_alignBottom="@+id/HabAzul"
+        android:layout_toEndOf="@+id/HabAzul" />
+
+    <TextView
+        android:id="@+id/HabNaranja1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignBaseline="@+id/HabAmarilla"
+        android:layout_alignBottom="@+id/HabAmarilla"
+        android:layout_toEndOf="@+id/HabAmarilla" />
+
+    <TextView
+        android:id="@+id/HabNaranja2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_orange_dark"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/HabAmarilla"
+        android:layout_toEndOf="@+id/HabAmarilla" />
+
+    <TextView
+        android:id="@+id/HabRoja1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignBaseline="@+id/HabNaranja1"
+        android:layout_alignBottom="@+id/HabNaranja1"
+        android:layout_toEndOf="@+id/HabNaranja1" />
+
+    <TextView
+        android:id="@+id/HabRoja2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/HabRoja1"
+        android:layout_alignStart="@+id/HabRoja1" />
+
+    <TextView
+        android:id="@+id/HabRoja3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_red_light"
+        android:text="+1 acción de combate a distancia"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="11dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/HabRoja2"
+        android:layout_alignStart="@+id/HabRoja2" />
+
+
 
 </RelativeLayout>

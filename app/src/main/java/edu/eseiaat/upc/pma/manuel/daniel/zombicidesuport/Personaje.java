@@ -11,7 +11,7 @@ import android.widget.ImageView;
  * Created by PortatilDani on 17/11/2017.
  */
 
-public class Personaje implements Parcelable{
+public class Personaje{
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
     public boolean invisible;
@@ -46,18 +46,6 @@ public class Personaje implements Parcelable{
         habRoja3 = in.readString();
         invisible = in.readByte() != 0;
     }
-
-    public static final Creator<Personaje> CREATOR = new Creator<Personaje>() {
-        @Override
-        public Personaje createFromParcel(Parcel in) {
-            return new Personaje(in);
-        }
-
-        @Override
-        public Personaje[] newArray(int size) {
-            return new Personaje[size];
-        }
-    };
 
     public boolean isInvisible() {
         return invisible;
@@ -107,22 +95,5 @@ public class Personaje implements Parcelable{
         return cara;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nombre);
-        parcel.writeString(habAzul);
-        parcel.writeString(habAmarilla);
-        parcel.writeString(habNaranja1);
-        parcel.writeString(habNaranja2);
-        parcel.writeString(habRoja1);
-        parcel.writeString(HabRoja2);
-        parcel.writeString(habRoja3);
-        parcel.writeByte((byte) (invisible ? 1 : 0));
-    }
 }
 

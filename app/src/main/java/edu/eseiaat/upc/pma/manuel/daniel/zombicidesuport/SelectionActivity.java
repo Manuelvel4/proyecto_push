@@ -400,6 +400,9 @@ public class SelectionActivity extends AppCompatActivity{
 
     public void Aceptar(View view) {
         Intent intent=new Intent(this,JuegoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(JuegoActivity.KeyListaPersonajes, listaPersonajesSelec);
+        intent.putExtras(bundle);
         startActivity(intent);
         finish();
     }

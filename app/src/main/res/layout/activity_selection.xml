@@ -60,6 +60,7 @@
         android:layout_below="@+id/HabRoja3"
         android:layout_marginTop="10dp"
         android:layout_toEndOf="@+id/Atras"
+        android:onClick="Aceptar"
         android:text="@string/Aceptar" />
 
     <ImageView

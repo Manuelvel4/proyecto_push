@@ -21,7 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignStart="@+id/imageView7"
-        android:layout_below="@+id/imageView4"
+        android:layout_below="@+id/Carta5"
         android:text="Cancelar" />
 
     <Button
@@ -29,7 +29,7 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:text="Todas"
-        android:layout_alignTop="@+id/imageView4"
+        android:layout_alignTop="@+id/Carta5"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -65,7 +65,7 @@
         android:text="Otros" />
 
     <ImageView
-        android:id="@+id/carta1"
+        android:id="@+id/Carta1"
         android:layout_width="200dp"
         android:layout_height="250dp"
         android:scaleType="fitCenter"
@@ -75,25 +75,25 @@
         android:layout_marginStart="30dp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Carta4"
         android:layout_width="200dp"
         android:layout_height="250dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/carta1" />
+        android:layout_alignStart="@+id/Carta1" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/Carta5"
         android:layout_width="200dp"
         android:layout_height="250dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/carta1" />
+        android:layout_alignStart="@+id/Carta1" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/Carta3"
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:scaleType="fitCenter"
@@ -110,7 +110,7 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_below="@+id/button5"
-        android:layout_alignStart="@+id/imageView5" />
+        android:layout_alignStart="@+id/Carta3" />
 
     <ImageView
         android:id="@+id/imageView8"
@@ -136,6 +136,6 @@
         android:layout_height="150dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
-        android:layout_alignTop="@+id/imageView5"
-        android:layout_toEndOf="@+id/imageView5" />
+        android:layout_alignTop="@+id/Carta3"
+        android:layout_toEndOf="@+id/Carta3" />
 </RelativeLayout>

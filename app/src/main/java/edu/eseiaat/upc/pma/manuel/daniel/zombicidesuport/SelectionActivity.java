@@ -397,5 +397,11 @@ public class SelectionActivity extends AppCompatActivity{
         startActivity(intent);
         finish();
     }
+
+    public void Aceptar(View view) {
+        Intent intent=new Intent(this,JuegoActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }
 

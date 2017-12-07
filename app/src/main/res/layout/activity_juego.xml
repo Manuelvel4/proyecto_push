@@ -5,8 +5,16 @@
     android:id="@+id/layout_juego"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/zombicidefondo"
     tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.JuegoActivity">
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ViewLevel"
+        android:layout_width="410dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/BTNmas" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/ViewPersonajes"
@@ -18,7 +26,7 @@
         android:layout_alignParentBottom="true" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/BTNmenos"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:text="-"
@@ -27,39 +35,34 @@
         android:layout_marginStart="12dp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/BTNmas"
         android:layout_width="30dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/recyclerView2"
-        android:layout_toStartOf="@+id/recyclerView2"
+        android:layout_toLeftOf="@+id/ViewUsuarios"
+        android:layout_toStartOf="@+id/ViewUsuarios"
         android:text="+" />
 
     <Switch
-        android:id="@+id/switch1"
+        android:id="@+id/ModoZombie"
         android:layout_width="100dp"
         android:layout_height="20dp"
-        android:layout_below="@+id/button7"
-        android:layout_marginEnd="81dp"
-        android:layout_marginRight="81dp"
-        android:layout_marginTop="90dp"
-        android:layout_toLeftOf="@+id/recyclerView2"
-        android:layout_toStartOf="@+id/recyclerView2"
         android:text="modozombie"
-        android:textSize="8sp" />
+        android:textSize="8sp"
+        android:layout_alignTop="@+id/Carta2"
+        android:layout_toStartOf="@+id/ViewUsuarios" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="70dp"
-        android:layout_height="29dp"
-        android:layout_alignLeft="@+id/switch1"
-        android:layout_alignStart="@+id/switch1"
-        android:layout_below="@+id/switch1"
-        android:text="cambio"
-        android:textSize="8sp" />
+        android:id="@+id/BTNCambio"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="intercambiar"
+        android:textSize="8sp"
+        android:layout_below="@+id/ModoZombie"
+        android:layout_alignStart="@+id/ModoZombie" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView2"
+        android:id="@+id/ViewUsuarios"
         android:layout_width="100dp"
         android:layout_height="match_parent"
         android:layout_alignParentEnd="true"
@@ -68,166 +71,49 @@
 
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/Carta2"
         android:layout_width="120dp"
         android:layout_height="200dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
-        android:layout_alignTop="@+id/carta1"
-        android:layout_toEndOf="@+id/carta1" />
-
-    <ImageButton
-        android:id="@+id/imageButton7"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:layout_below="@+id/button7"
-        android:layout_toLeftOf="@+id/text_red_3"
-        android:layout_toStartOf="@+id/text_red_3"
-        app:srcCompat="@android:drawable/btn_star_big_on" />
-
-    <ImageButton
-        android:id="@+id/imageButton77"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_alignBottom="@+id/text_blue"
-        android:layout_toEndOf="@+id/text_blue" />
-
-    <ImageButton
-        android:id="@+id/imageButton777"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_below="@+id/progressBar"
-        android:layout_toStartOf="@+id/text_blue" />
-
-    <ImageButton
-        android:id="@+id/imageButton7777"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_alignBottom="@+id/text_yellow"
-        android:layout_toEndOf="@+id/text_organge_2" />
-
-
+        android:layout_alignTop="@+id/Carta1"
+        android:layout_toEndOf="@+id/Carta1" />
 
 
     <ImageView
-        android:id="@+id/carta1"
+        android:id="@+id/Carta1"
         android:layout_width="120dp"
         android:layout_height="200dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
-        android:layout_alignTop="@+id/switch1"
+        android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/ViewPersonajes" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/Carta4"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/imageView5"
-        android:layout_toRightOf="@+id/imageView5"
+        android:layout_toEndOf="@+id/Carta3"
+        android:layout_toRightOf="@+id/Carta3"
         app:srcCompat="@drawable/rifle" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/Carta5"
         android:layout_width="80dp"
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/imageView3"
-        android:layout_toRightOf="@+id/imageView3"
+        android:layout_toEndOf="@+id/Carta4"
+        android:layout_toRightOf="@+id/Carta4"
         app:srcCompat="@drawable/rifle" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/Carta3"
         android:layout_width="80dp"
         android:layout_height="120dp"
         app:srcCompat="@drawable/rifle"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/imageView2" />
-
-
-    <TextView
-        android:id="@+id/text_red_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:layout_alignTop="@+id/imageButton7777"
-        android:layout_toEndOf="@+id/imageButton7777" />
-
-    <TextView
-        android:id="@+id/text_red_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/text_red_1"
-        android:layout_alignStart="@+id/text_red_1"
-        android:layout_below="@+id/text_red_1"
-        android:layout_weight="1"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/text_red_3"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="17dp"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:layout_below="@+id/progressBar"
-        android:layout_toEndOf="@+id/button4" />
-
-    <TextView
-        android:id="@+id/text_red_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/text_red_2"
-        android:layout_alignStart="@+id/text_red_2"
-        android:layout_below="@+id/text_red_2"
-        android:layout_weight="1"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/text_organge_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:layout_above="@+id/text_red_5"
-        android:layout_alignLeft="@+id/text_yellow"
-        android:layout_alignStart="@+id/text_yellow"
-        android:layout_weight="1"
-        android:text="TextView" />
-
-    <TextView
-        android:id="@+id/text_blue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:layout_below="@+id/progressBar"
-        android:layout_toEndOf="@+id/text_red_3" />
-
-    <TextView
-        android:id="@+id/text_yellow"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:layout_alignTop="@+id/imageButton77"
-        android:layout_toEndOf="@+id/imageButton77" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/switch1"
-        android:layout_marginBottom="11dp"
-        android:layout_toEndOf="@+id/button4"
-        android:layout_toLeftOf="@+id/button7"
-        android:layout_toRightOf="@+id/button4"
-        android:layout_toStartOf="@+id/button7" />
+        android:layout_toEndOf="@+id/Carta2" />
 
 
 </RelativeLayout>

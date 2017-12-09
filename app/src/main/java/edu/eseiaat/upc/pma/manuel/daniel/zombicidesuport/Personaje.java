@@ -14,6 +14,7 @@ import android.widget.ImageView;
 public class Personaje{
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
+    public Drawable carta1,carta2,carta3,carta4,carta5;
     public boolean invisible;
     public boolean[] level;
 
@@ -28,6 +29,46 @@ public class Personaje{
         this.habRoja3 = habRoja3;
         this.foto = foto;
         this.cara = cara;
+    }
+
+    public Drawable getCarta1() {
+        return carta1;
+    }
+
+    public void setCarta1(Drawable carta1) {
+        this.carta1 = carta1;
+    }
+
+    public Drawable getCarta2() {
+        return carta2;
+    }
+
+    public void setCarta2(Drawable carta2) {
+        this.carta2 = carta2;
+    }
+
+    public Drawable getCarta3() {
+        return carta3;
+    }
+
+    public void setCarta3(Drawable carta3) {
+        this.carta3 = carta3;
+    }
+
+    public Drawable getCarta4() {
+        return carta4;
+    }
+
+    public void setCarta4(Drawable carta4) {
+        this.carta4 = carta4;
+    }
+
+    public Drawable getCarta5() {
+        return carta5;
+    }
+
+    public void setCarta5(Drawable carta5) {
+        this.carta5 = carta5;
     }
 
     public Personaje(String nombre, Drawable cara, boolean invisible) {

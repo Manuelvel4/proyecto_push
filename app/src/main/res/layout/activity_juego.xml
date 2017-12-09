@@ -111,21 +111,19 @@
         android:id="@+id/Carta4"
         android:layout_width="85dp"
         android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
         android:scaleType="fitCenter"
-        android:layout_toEndOf="@+id/Carta3"
-        android:layout_toRightOf="@+id/Carta3"
-        app:srcCompat="@drawable/rifle" />
+        app:srcCompat="@drawable/rifle"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/Carta3" />
 
     <ImageView
         android:id="@+id/Carta5"
         android:layout_width="85dp"
         android:layout_height="120dp"
-        android:layout_alignParentBottom="true"
         android:scaleType="fitCenter"
-        android:layout_toEndOf="@+id/Carta4"
-        android:layout_toRightOf="@+id/Carta4"
-        app:srcCompat="@drawable/rifle" />
+        app:srcCompat="@drawable/rifle"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/Carta4" />
 
     <ImageView
         android:id="@+id/Carta3"
@@ -133,7 +131,6 @@
         android:layout_height="120dp"
         app:srcCompat="@drawable/rifle"
         android:layout_alignParentBottom="true"
-        android:scaleType="fitXY"
         android:layout_toEndOf="@+id/Carta2" />
 
     <TextView

@@ -1,11 +1,15 @@
 package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 
+import android.content.ClipData;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +29,8 @@ public class JuegoActivity extends AppCompatActivity {
     private LinearLayoutManager linlayoutmanager;
     private PersonajesAdapter adapterPersonajes;
     private int idPersonaje;
+    private ImageView carta1,carta2,carta3,carta4,carta5;
+    private boolean[] drop;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +43,18 @@ public class JuegoActivity extends AppCompatActivity {
         habRoja1=(TextView) findViewById(R.id.HabRoja1);
         habRoja2=(TextView) findViewById(R.id.HabRoja2);
         habRoja3=(TextView) findViewById(R.id.HabRoja3);
+        carta1=(ImageView)findViewById(R.id.Carta1);
+        carta2=(ImageView)findViewById(R.id.Carta2);
+        carta3=(ImageView)findViewById(R.id.Carta3);
+        carta4=(ImageView)findViewById(R.id.Carta4);
+        carta5=(ImageView)findViewById(R.id.Carta5);
         foto=(ImageView)findViewById(R.id.foto);
         nombre=(TextView)findViewById(R.id.nombre);
 
         union=getIntent().getIntArrayExtra(KeyListaPersonajes);
         listaPersonajes=new ArrayList<>();
         listaPersonajesSelec=new ArrayList<>();
+
         CrearPersonajes();
         ListaPersonajesSelec();
 
@@ -52,6 +64,10 @@ public class JuegoActivity extends AppCompatActivity {
         adapterPersonajes =new PersonajesAdapter(this,listaPersonajesSelec);
         viewPersonajes.setAdapter(adapterPersonajes);
         idPersonaje=0;
+
+        drop=new boolean[5];
+
+        inicio();
         PersonajeSelec();
 
         adapterPersonajes.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +77,257 @@ public class JuegoActivity extends AppCompatActivity {
                 PersonajeSelec();
             }
         });
+        carta1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                drop[0]=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                return true;
+
+            }
+        });
+        carta1.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        if (drop[1]){
+                            p.carta1=carta2.getDrawable();
+                            p.carta2=carta1.getDrawable();
+                        }
+                        if (drop[2]){
+                            p.carta1=carta3.getDrawable();
+                            p.carta3=carta1.getDrawable();
+                        }
+                        if (drop[3]){
+                            p.carta1=carta4.getDrawable();
+                            p.carta4=carta1.getDrawable();
+                        }
+                        if (drop[4]){
+                            p.carta1=carta5.getDrawable();
+                            p.carta5=carta1.getDrawable();
+                        }
+                        PersonajeSelec();
+                        ResetDrop();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        carta2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                drop[1]=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                return true;
+
+            }
+        });
+        carta2.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        if (drop[0]){
+                            p.carta2=carta1.getDrawable();
+                            p.carta1=carta2.getDrawable();
+                        }
+                        if (drop[2]){
+                            p.carta2=carta3.getDrawable();
+                            p.carta3=carta2.getDrawable();
+                        }
+                        if (drop[3]){
+                            p.carta2=carta4.getDrawable();
+                            p.carta4=carta2.getDrawable();
+                        }
+                        if (drop[4]){
+                            p.carta2=carta5.getDrawable();
+                            p.carta5=carta2.getDrawable();
+                        }
+                        PersonajeSelec();
+                        ResetDrop();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        carta3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                drop[2]=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                return true;
+
+            }
+        });
+        carta3.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        if (drop[0]){
+                            p.carta3=carta1.getDrawable();
+                            p.carta1=carta3.getDrawable();
+                        }
+                        if (drop[1]){
+                            p.carta3=carta2.getDrawable();
+                            p.carta2=carta3.getDrawable();
+                        }
+                        if (drop[3]){
+                            p.carta3=carta4.getDrawable();
+                            p.carta4=carta3.getDrawable();
+                        }
+                        if (drop[4]){
+                            p.carta3=carta5.getDrawable();
+                            p.carta5=carta3.getDrawable();
+                        }
+                        PersonajeSelec();
+                        ResetDrop();
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        carta4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                drop[3]=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                return true;
+
+            }
+        });
+        carta4.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        if (drop[0]){
+                            p.carta4=carta1.getDrawable();
+                            p.carta1=carta4.getDrawable();
+                        }
+                        if (drop[1]){
+                            p.carta4=carta2.getDrawable();
+                            p.carta2=carta4.getDrawable();
+                        }
+                        if (drop[2]){
+                            p.carta4=carta3.getDrawable();
+                            p.carta3=carta4.getDrawable();
+                        }
+                        if (drop[4]){
+                            p.carta4=carta5.getDrawable();
+                            p.carta5=carta4.getDrawable();
+                        }
+                        PersonajeSelec();
+                        ResetDrop();
+
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        carta5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                drop[4]=true;
+                ClipData data = ClipData.newPlainText("", "");
+                View.DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
+                view.startDrag(data, shadowBuilder, view, 0);
+                //view.startDragAndDrop(data,shadowBuilder,view,0);
+                return true;
+
+            }
+        });
+        carta5.setOnDragListener(new View.OnDragListener() {
+            @Override
+            public boolean onDrag(View v, DragEvent event) {
+                switch (event.getAction()) {
+                    case DragEvent.ACTION_DROP:
+                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        if (drop[0]){
+                            p.carta5=carta1.getDrawable();
+                            p.carta1=carta5.getDrawable();
+                        }
+                        if (drop[1]){
+                            p.carta5=carta2.getDrawable();
+                            p.carta2=carta5.getDrawable();
+                        }
+                        if (drop[2]){
+                            p.carta5=carta3.getDrawable();
+                            p.carta3=carta5.getDrawable();
+                        }
+                        if (drop[3]){
+                            p.carta5=carta4.getDrawable();
+                            p.carta4=carta5.getDrawable();
+                        }
+                        PersonajeSelec();
+                        ResetDrop();
+
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
+        carta1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Intent intent=new Intent(JuegoActivity.this,CardsActivity.class);
+                Personaje p=listaPersonajesSelec.get(idPersonaje);
+                Drawable foto = p.carta1;
+                Bitmap bitmap = ((BitmapDrawable)foto).getBitmap();
+                intent.putExtra(CardsActivity.Keycarta1,bitmap);
+                startActivity(intent);*/
+            }
+        });
+
     }
 
+    private void ResetDrop() {
+        for (int i=0;i<drop.length;i++){
+            drop[i]=false;
+        }
+    }
+    private void inicio() {
+        for (int i=0; i<listaPersonajesSelec.size();i++){
+            Personaje p=listaPersonajesSelec.get(i);
+            p.carta1=getDrawable(R.drawable.cartamano);
+            p.carta2=getDrawable(R.drawable.cartamano);
+            p.carta3=getDrawable(R.drawable.cartamano);
+            p.carta4=getDrawable(R.drawable.cartamano);
+            p.carta5=getDrawable(R.drawable.cartamano);
+
+            if (p.getNombre()=="watts"){
+                p.carta1=getDrawable(R.drawable.calavera);
+            }
+
+        }
+    }
     private void ListaPersonajesSelec() {
         boolean[] level=new boolean[6];
         for (int i=0;i<level.length;i++){
@@ -75,7 +340,6 @@ public class JuegoActivity extends AppCompatActivity {
             ps.setLevel(level);
         }
     }
-
     private void PersonajeSelec() {
         Personaje p = listaPersonajesSelec.get(idPersonaje);
         habAzul.setText(p.getHabAzul());
@@ -87,6 +351,12 @@ public class JuegoActivity extends AppCompatActivity {
         habRoja3.setText(p.getHabRoja3());
         foto.setImageDrawable(p.getCara());
         nombre.setText(p.getNombre());
+        carta1.setImageDrawable(p.getCarta1());
+        carta2.setImageDrawable(p.getCarta2());
+        carta3.setImageDrawable(p.getCarta3());
+        carta4.setImageDrawable(p.getCarta4());
+        carta5.setImageDrawable(p.getCarta5());
+
         if (!p.level[0]){
             habAmarilla.setBackgroundColor(getColor(android.R.color.white));
         }

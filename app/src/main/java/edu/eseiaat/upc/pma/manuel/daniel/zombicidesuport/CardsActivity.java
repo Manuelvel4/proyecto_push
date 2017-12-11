@@ -177,6 +177,8 @@ public class CardsActivity extends AppCompatActivity {
         listacartas.add(new Cartas(getDrawable(R.drawable.cwater)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cgasoline)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cglassbottle)));
+        listacartas.add(new Cartas((getDrawable(R.drawable.cwound))));
+        listacartas.add(new Cartas(getDrawable(R.drawable.cartamano)));
     }
 
     public void Todas(View view) {

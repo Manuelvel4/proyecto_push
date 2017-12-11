@@ -7,6 +7,15 @@
     android:background="@drawable/zombicidefondo"
     tools:context="edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport.CardsActivity">
 
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/ViewCartas"
+        android:layout_width="140dp"
+        android:layout_height="290dp"
+        android:layout_marginEnd="24dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/button9" />
+
     <Button
         android:id="@+id/button9"
         android:layout_width="wrap_content"

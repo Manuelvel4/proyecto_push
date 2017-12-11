@@ -68,7 +68,7 @@
         android:layout_height="20dp"
         android:text="modozombie"
         android:textSize="8sp"
-        android:layout_alignTop="@+id/Carta2"
+        android:layout_alignTop="@+id/nombre"
         android:layout_toStartOf="@+id/ViewUsuarios" />
 
     <Button
@@ -91,7 +91,7 @@
     <ImageView
         android:id="@+id/Carta2"
         android:layout_width="130dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/rifle"
         android:layout_alignTop="@+id/Carta1"
@@ -101,7 +101,7 @@
     <ImageView
         android:id="@+id/Carta1"
         android:layout_width="130dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/ViewPersonajes"
         android:scaleType="fitCenter"

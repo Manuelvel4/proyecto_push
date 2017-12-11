@@ -367,7 +367,7 @@ public class JuegoActivity extends AppCompatActivity {
             p.carta5=getDrawable(R.drawable.cartamano);
 
             if (p.getNombre()=="watts"){
-                p.carta1=getDrawable(R.drawable.calavera);
+                p.carta1=getDrawable(R.drawable.cbaseballbat);
             }
 
         }

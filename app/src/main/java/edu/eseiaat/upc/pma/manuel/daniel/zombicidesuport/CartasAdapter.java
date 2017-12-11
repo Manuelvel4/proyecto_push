@@ -14,10 +14,11 @@ import java.util.List;
  * Created by PortatilDani on 11/12/2017.
  */
 
-public class CartasAdapter extends RecyclerView.Adapter<CartasAdapter.ViewHolder> implements View.OnClickListener{
+public class CartasAdapter extends RecyclerView.Adapter<CartasAdapter.ViewHolder> implements View.OnClickListener,View.OnLongClickListener{
         private List<Cartas> ListaCartas;
         private Context context;
         private View.OnClickListener listener;
+        private View.OnLongClickListener longlistener;
 
         public CartasAdapter(Context c, List<Cartas> list) {
             this.context = c;
@@ -31,6 +32,7 @@ public class CartasAdapter extends RecyclerView.Adapter<CartasAdapter.ViewHolder
             final View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.cartas, parent, false);
             final ViewHolder vh = new ViewHolder(v);
             v.setOnClickListener(this);
+            v.setOnLongClickListener(this);
             return vh;
         }
 
@@ -56,13 +58,24 @@ public class CartasAdapter extends RecyclerView.Adapter<CartasAdapter.ViewHolder
             }
         }
 
+        public void setOnLongClickListener(View.OnLongClickListener longlistener){
+            this.longlistener=longlistener;
+        }
+        @Override
+        public boolean onLongClick(View view) {
+            if(longlistener!=null){
+                return longlistener.onLongClick(view);
+            }
+            return false;
+        }
+
         public static class ViewHolder extends RecyclerView.ViewHolder {
 
-            protected ImageView carta;
-            public ViewHolder(View v) {
-                super(v);
-                carta = (ImageView) v.findViewById(R.id.cartas);
+                protected ImageView carta;
+                public ViewHolder(View v) {
+                    super(v);
+                    carta = (ImageView) v.findViewById(R.id.cartas);
 
+                }
             }
-        }
 }

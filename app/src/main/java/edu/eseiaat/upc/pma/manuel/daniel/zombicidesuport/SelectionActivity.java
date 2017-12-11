@@ -225,7 +225,6 @@ public class SelectionActivity extends AppCompatActivity{
         }
 
     }
-
     private void GuardarInvisibles() {
         visibilidad=new boolean[listaPersonajes.size()];
         for (int i=0;i<listaPersonajes.size();i++){
@@ -234,7 +233,6 @@ public class SelectionActivity extends AppCompatActivity{
         }
 
     }
-
     private void PersonajeSeleccionado() {
         Personaje p = listaPersonajes.get(idPersonaje);
         habAzul.setText(p.getHabAzul());
@@ -398,7 +396,6 @@ public class SelectionActivity extends AppCompatActivity{
         startActivity(intent);
         finish();
     }
-
     public void Aceptar(View view) {
         int[] ps=new int[union.size()];
         for (int i=0;i<union.size();i++){

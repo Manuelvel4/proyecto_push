@@ -15,7 +15,7 @@ public class Personaje{
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
     public Drawable carta1,carta2,carta3,carta4,carta5;
-    public boolean invisible;
+    public boolean invisible,modozombie;
     public boolean[] level;
 
     public Personaje(String nombre, String habAzul, String habAmarilla, String habNaranja1, String habNaranja2, String habRoja1, String habRoja2, String habRoja3, Drawable foto, Drawable cara) {
@@ -29,6 +29,14 @@ public class Personaje{
         this.habRoja3 = habRoja3;
         this.foto = foto;
         this.cara = cara;
+    }
+
+    public boolean isModozombie() {
+        return modozombie;
+    }
+
+    public void setModozombie(boolean modozombie) {
+        this.modozombie = modozombie;
     }
 
     public Drawable getCarta1() {

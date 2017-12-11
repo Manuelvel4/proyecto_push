@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class JuegoActivity extends AppCompatActivity {
     private TextView habAzul,habAmarilla, habNaranja1, habNaranja2, habRoja1, habRoja2,habRoja3,nombre;
     private ImageView foto;
     private ArrayList<Personaje> listaPersonajes;
+    private ArrayList<Personaje> listaPersonajeszombie;
     private ArrayList<Personaje> listaPersonajesSelec;
     private RecyclerView viewPersonajes;
     private LinearLayoutManager linlayoutmanager;
@@ -31,6 +33,7 @@ public class JuegoActivity extends AppCompatActivity {
     private int idPersonaje;
     private ImageView carta1,carta2,carta3,carta4,carta5;
     private boolean[] drop;
+    private Switch modozombie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +53,15 @@ public class JuegoActivity extends AppCompatActivity {
         carta5=(ImageView)findViewById(R.id.Carta5);
         foto=(ImageView)findViewById(R.id.foto);
         nombre=(TextView)findViewById(R.id.nombre);
+        modozombie = (Switch) findViewById(R.id.ModoZombie);
 
         union=getIntent().getIntArrayExtra(KeyListaPersonajes);
         listaPersonajes=new ArrayList<>();
+        listaPersonajeszombie=new ArrayList<>();
         listaPersonajesSelec=new ArrayList<>();
 
         CrearPersonajes();
+        CrearPersonajesZombies();
         ListaPersonajesSelec();
 
         viewPersonajes =(RecyclerView)findViewById(R.id.ViewPersonajes);
@@ -294,18 +300,56 @@ public class JuegoActivity extends AppCompatActivity {
                 return true;
             }
         });
+        modozombie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Personaje p=listaPersonajesSelec.get(idPersonaje);
+                for (int i=0;i<listaPersonajes.size();i++){
+                    Personaje q=listaPersonajes.get(i);
+                    if (p.getNombre().equals(q.getNombre())){
+                        if (modozombie.isChecked()){
+                            listaPersonajesSelec.add(listaPersonajeszombie.get(i));
+                            Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+                            r.setModozombie(true);
+                            CambioModo();
+                        }else{
+                            listaPersonajesSelec.add(listaPersonajes.get(i));
+                            Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+                            r.setModozombie(false);
+                            CambioModo();
+                        }
+                    }
+                }
+                listaPersonajesSelec.remove(idPersonaje);
+                idPersonaje=listaPersonajesSelec.size()-1;
+                adapterPersonajes.notifyDataSetChanged();
+                PersonajeSelec();
+
+            }
+        });
         carta1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent=new Intent(JuegoActivity.this,CardsActivity.class);
+                Intent intent=new Intent(JuegoActivity.this,CardsActivity.class);
                 Personaje p=listaPersonajesSelec.get(idPersonaje);
-                Drawable foto = p.carta1;
-                Bitmap bitmap = ((BitmapDrawable)foto).getBitmap();
-                intent.putExtra(CardsActivity.Keycarta1,bitmap);
-                startActivity(intent);*/
+                //int a =carta1.getTag();
+                //intent.putExtra(CardsActivity.Keycarta1,a);
+                startActivity(intent);
             }
         });
 
+
+    }
+
+    private void CambioModo() {
+        Personaje p=listaPersonajesSelec.get(idPersonaje);
+        Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+        r.carta1=p.carta1;
+        r.carta2=p.carta2;
+        r.carta3=p.carta3;
+        r.carta4=p.carta4;
+        r.carta5=p.carta5;
+        r.level=p.level;
     }
 
     private void ResetDrop() {
@@ -356,7 +400,11 @@ public class JuegoActivity extends AppCompatActivity {
         carta3.setImageDrawable(p.getCarta3());
         carta4.setImageDrawable(p.getCarta4());
         carta5.setImageDrawable(p.getCarta5());
-
+        if (p.isModozombie()){
+            modozombie.setChecked(true);
+        }else{
+            modozombie.setChecked(false);
+        }
         if (!p.level[0]){
             habAmarilla.setBackgroundColor(getColor(android.R.color.white));
         }
@@ -460,7 +508,7 @@ public class JuegoActivity extends AppCompatActivity {
         String habroja3=getString(R.string.FrenesiCombate);
         Drawable foto=getDrawable(R.drawable.pwattszombie);
         Drawable cara=getDrawable(R.drawable.pwattscarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Joshua";
         habazul=getString(R.string.Socorrista);
@@ -472,7 +520,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Regeneracion);
         foto=getDrawable(R.drawable.pjoshuazombie);
         cara=getDrawable(R.drawable.pjoshuacarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Shannon";
         habazul=getString(R.string.DisparoABocajarro);
@@ -484,7 +532,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.SegadoraCombate);
         foto=getDrawable(R.drawable.pshannonzombie);
         cara=getDrawable(R.drawable.pshannoncarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Grindlock";
         habazul=getString(R.string.Provocacion);
@@ -496,7 +544,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.seisEnElDadoMas1DadoDeCombate);
         foto=getDrawable(R.drawable.pgrindlockzombie);
         cara=getDrawable(R.drawable.pgrindlockcarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Belle";
         habazul=getString(R.string.mas1accionDeMovimientoGratuita);
@@ -508,7 +556,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Ambidiestra);
         foto=getDrawable(R.drawable.pbellezombie);
         cara=getDrawable(R.drawable.pbellecarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Kim";
         habazul=getString(R.string.Afortunada);
@@ -520,7 +568,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.VinculoZombi);
         foto=getDrawable(R.drawable.pkimzombie);
         cara=getDrawable(R.drawable.pkimcarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
     }
 }

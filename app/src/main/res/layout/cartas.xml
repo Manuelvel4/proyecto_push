@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="130dp"
-    android:layout_height="200dp">
+    android:layout_height="180dp">
 
     <ImageView
         android:id="@+id/cartas"
         android:layout_width="130dp"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         app:srcCompat="@drawable/cbagofrice" />
 </LinearLayout>

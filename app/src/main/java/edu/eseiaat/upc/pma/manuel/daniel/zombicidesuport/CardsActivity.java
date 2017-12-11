@@ -42,7 +42,7 @@ public class CardsActivity extends AppCompatActivity {
         listacartas.add(new Cartas(getDrawable(R.drawable.cwater)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cgasoline)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cglassbottle)));
-        /*listacartas.add(new Cartas(getDrawable(R.drawable.cgoaliemask)));
+        listacartas.add(new Cartas(getDrawable(R.drawable.cgoaliemask)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cflashlight)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cplentyofammo)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cplentyofammoshotgun)));
@@ -64,7 +64,7 @@ public class CardsActivity extends AppCompatActivity {
         listacartas.add(new Cartas(getDrawable(R.drawable.crifle)));
         listacartas.add(new Cartas(getDrawable(R.drawable.csawedoff)));
         listacartas.add(new Cartas(getDrawable(R.drawable.cshotgun)));
-        listacartas.add(new Cartas(getDrawable(R.drawable.csubmg)));*/
+        listacartas.add(new Cartas(getDrawable(R.drawable.csubmg)));
 
     }
 }

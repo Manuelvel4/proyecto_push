@@ -3,7 +3,8 @@ package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 import android.content.ClipData;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Parcelable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,7 +27,7 @@ public class SelectionActivity extends AppCompatActivity{
     public static String keynombre="key_nombre";
 
     private RecyclerView viewPersonajes;
-    private List<Personaje> listaPersonajes;
+    private List<Personajes> listaPersonajes;
     private List<String> listaUsuarios;
     private PersonajesAdapter adapterPersonajes;
     private ArrayAdapter<String> adapterUsuarios;
@@ -39,7 +40,7 @@ public class SelectionActivity extends AppCompatActivity{
     private boolean personajeDrop =false;
     private int idPersonajeSelec=0;
     private boolean personajeSelecDrop=false;
-    private ArrayList<Personaje> listaPersonajesSelec;
+    private ArrayList<Personajes> listaPersonajesSelec;
     private RecyclerView viewPersonajesSelec;
     private PersonajesAdapter adapterPersonajesSelec;
     private ImageView borrar;
@@ -91,29 +92,30 @@ public class SelectionActivity extends AppCompatActivity{
         viewPersonajesSelec.setAdapter(adapterPersonajesSelec);
 
         borrar.setOnDragListener(new View.OnDragListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DRAG_STARTED:
-                        v.setBackgroundColor(getColor(android.R.color.holo_red_light));
+                      //  v.setBackgroundColor(getColor(android.R.color.holo_red_light));
                         break;
                     case DragEvent.ACTION_DRAG_ENTERED:
-                        v.setBackgroundColor(getColor(android.R.color.holo_red_dark));
+                       // v.setBackgroundColor(getColor(android.R.color.holo_red_dark));
                         break;
                     case DragEvent.ACTION_DRAG_EXITED:
-                        v.setBackgroundColor(getColor(android.R.color.holo_red_light));
+                        //v.setBackgroundColor(getColor(android.R.color.holo_red_light));
                         break;
                     case DragEvent.ACTION_DROP:
 
                         if (personajeSelecDrop){
                             listaPersonajesSelec.remove(idPersonajeSelec);
-                            Personaje p=listaPersonajes.get(union.get(idPersonajeSelec));
+                            Personajes p=listaPersonajes.get(union.get(idPersonajeSelec));
                             p.setInvisible(false);
                             union.remove(idPersonajeSelec);
 
                         }
                         if (personajeDrop){
-                            Personaje p=listaPersonajes.get(idPersonaje);
+                            Personajes p=listaPersonajes.get(idPersonaje);
                             p.setInvisible(false);
                         }
 
@@ -131,6 +133,7 @@ public class SelectionActivity extends AppCompatActivity{
             }
         });
         viewPersonajesSelec.setOnDragListener(new View.OnDragListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
@@ -145,11 +148,11 @@ public class SelectionActivity extends AppCompatActivity{
                         break;
                     case DragEvent.ACTION_DROP:
                         if (personajeDrop==true){
-                            Personaje p=listaPersonajes.get(idPersonaje);
+                            Personajes p=listaPersonajes.get(idPersonaje);
                             p.setInvisible(true);
                             adapterPersonajes.notifyDataSetChanged();
                             union.add(idPersonaje);
-                            listaPersonajesSelec.add(new Personaje (p.getNombre(),p.getCara(),false));
+                            listaPersonajesSelec.add(new Personajes(p.getNombre(),p.getCara(),false));
                             adapterPersonajesSelec.notifyDataSetChanged();
                             viewPersonajesSelec.smoothScrollToPosition(listaPersonajesSelec.size()-1);
 
@@ -158,7 +161,7 @@ public class SelectionActivity extends AppCompatActivity{
                         personajeSelecDrop=false;
                         break;
                     case DragEvent.ACTION_DRAG_ENDED:
-                        v.setBackgroundColor(getColor(android.R.color.transparent));
+                      //  v.setBackgroundColor(getColor(android.R.color.transparent));
                     default:
                         break;
                 };
@@ -191,7 +194,7 @@ public class SelectionActivity extends AppCompatActivity{
             @Override
             public boolean onLongClick(View view) {
                 idPersonaje=viewPersonajes.getChildAdapterPosition(view);
-                Personaje p=listaPersonajes.get(idPersonaje);
+                Personajes p=listaPersonajes.get(idPersonaje);
                 personajeDrop=true;
                 PersonajeSeleccionado();
                 if (!p.isInvisible()){
@@ -220,7 +223,7 @@ public class SelectionActivity extends AppCompatActivity{
 
     private void CargarInvisibles() {
         for (int i=0;i<listaPersonajes.size();i++){
-            Personaje p=listaPersonajes.get(i);
+            Personajes p=listaPersonajes.get(i);
             p.setInvisible(visibilidad[i]);
         }
 
@@ -228,13 +231,13 @@ public class SelectionActivity extends AppCompatActivity{
     private void GuardarInvisibles() {
         visibilidad=new boolean[listaPersonajes.size()];
         for (int i=0;i<listaPersonajes.size();i++){
-            Personaje p=listaPersonajes.get(i);
+            Personajes p=listaPersonajes.get(i);
             visibilidad[i]=p.isInvisible();
         }
 
     }
     private void PersonajeSeleccionado() {
-        Personaje p = listaPersonajes.get(idPersonaje);
+        Personajes p = listaPersonajes.get(idPersonaje);
         habAzul.setText(p.getHabAzul());
         habAmarilla.setText(p.getHabAmarilla());
         habNaranja1.setText(p.getHabNaranja1());
@@ -255,7 +258,7 @@ public class SelectionActivity extends AppCompatActivity{
             String habroja3=getString(R.string.mas1alasTiradasDeCombate);
             Drawable foto=getDrawable(R.drawable.pwatts);
             Drawable cara=getDrawable(R.drawable.pwattscara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
             nombre="Joshua";
             habazul=getString(R.string.Socorrista);
@@ -267,7 +270,7 @@ public class SelectionActivity extends AppCompatActivity{
             habroja3=getString(R.string.mas1alasTiradasDeCombate);
             foto=getDrawable(R.drawable.pjoshua);
             cara=getDrawable(R.drawable.pjoshuacara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
             nombre="Shannon";
             habazul=getString(R.string.DisparoABocajarro);
@@ -279,7 +282,7 @@ public class SelectionActivity extends AppCompatActivity{
             habroja3=getString(R.string.Escurridiza);
             foto=getDrawable(R.drawable.pshannon);
             cara=getDrawable(R.drawable.pshannoncara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
             nombre="Grindlock";
             habazul=getString(R.string.Provocacion);
@@ -291,7 +294,7 @@ public class SelectionActivity extends AppCompatActivity{
             habroja3=getString(R.string.seisEnElDadoMas1DadoDeCombate);
             foto=getDrawable(R.drawable.pgrindlock);
             cara=getDrawable(R.drawable.pgrindlockcara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
             nombre="Belle";
             habazul=getString(R.string.mas1accionDeMovimientoGratuita);
@@ -303,7 +306,7 @@ public class SelectionActivity extends AppCompatActivity{
             habroja3=getString(R.string.Ambidiestra);
             foto=getDrawable(R.drawable.pbelle);
             cara=getDrawable(R.drawable.pbellecara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
             nombre="Kim";
             habazul=getString(R.string.Afortunada);
@@ -315,7 +318,7 @@ public class SelectionActivity extends AppCompatActivity{
             habroja3=getString(R.string.seisEnElDadoMas1DadoCuerpoACuerpo);
             foto=getDrawable(R.drawable.pkim);
             cara=getDrawable(R.drawable.pkimcara);
-            listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+            listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
     }
     private void CrearPersonajesZombies() {
         String nombre="watts";
@@ -328,7 +331,7 @@ public class SelectionActivity extends AppCompatActivity{
         String habroja3=getString(R.string.FrenesiCombate);
         Drawable foto=getDrawable(R.drawable.pwattszombie);
         Drawable cara=getDrawable(R.drawable.pwattscarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Joshua";
         habazul=getString(R.string.Socorrista);
@@ -340,7 +343,7 @@ public class SelectionActivity extends AppCompatActivity{
         habroja3=getString(R.string.Regeneracion);
         foto=getDrawable(R.drawable.pjoshuazombie);
         cara=getDrawable(R.drawable.pjoshuacarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Shannon";
         habazul=getString(R.string.DisparoABocajarro);
@@ -352,7 +355,7 @@ public class SelectionActivity extends AppCompatActivity{
         habroja3=getString(R.string.SegadoraCombate);
         foto=getDrawable(R.drawable.pshannonzombie);
         cara=getDrawable(R.drawable.pshannoncarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Grindlock";
         habazul=getString(R.string.Provocacion);
@@ -364,7 +367,7 @@ public class SelectionActivity extends AppCompatActivity{
         habroja3=getString(R.string.seisEnElDadoMas1DadoDeCombate);
         foto=getDrawable(R.drawable.pgrindlockzombie);
         cara=getDrawable(R.drawable.pgrindlockcarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Belle";
         habazul=getString(R.string.mas1accionDeMovimientoGratuita);
@@ -376,7 +379,7 @@ public class SelectionActivity extends AppCompatActivity{
         habroja3=getString(R.string.Ambidiestra);
         foto=getDrawable(R.drawable.pbellezombie);
         cara=getDrawable(R.drawable.pbellecarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Kim";
         habazul=getString(R.string.Afortunada);
@@ -388,7 +391,7 @@ public class SelectionActivity extends AppCompatActivity{
         habroja3=getString(R.string.VinculoZombi);
         foto=getDrawable(R.drawable.pkimzombie);
         cara=getDrawable(R.drawable.pkimcarazombie);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
     }
     public void Atras(View view) {

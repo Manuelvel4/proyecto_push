@@ -2,8 +2,6 @@ package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 
 import android.content.ClipData;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,9 +9,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.DragEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,9 +24,9 @@ public class JuegoActivity extends AppCompatActivity {
     private int[] union;
     private TextView habAzul,habAmarilla, habNaranja1, habNaranja2, habRoja1, habRoja2,habRoja3,nombre;
     private ImageView foto;
-    private ArrayList<Personaje> listaPersonajes;
-    private ArrayList<Personaje> listaPersonajeszombie;
-    private ArrayList<Personaje> listaPersonajesSelec;
+    private ArrayList<Personajes> listaPersonajes;
+    private ArrayList<Personajes> listaPersonajeszombie;
+    private ArrayList<Personajes> listaPersonajesSelec;
     private RecyclerView viewPersonajes;
     private LinearLayoutManager linlayoutmanager;
     private PersonajesAdapter adapterPersonajes;
@@ -34,6 +34,25 @@ public class JuegoActivity extends AppCompatActivity {
     private ImageView carta1,carta2,carta3,carta4,carta5;
     private boolean[] drop;
     private Switch modozombie;
+
+    // BARRA_TABLA_PUNTOS
+    ArrayList<BARRA> lista;
+    ArrayList<Integer> lista_Draw;
+    ArrayList<Integer> lista_red;
+    RecyclerView recy;
+    Button btn_plus, btn_less;
+    int CONTADOR_VUELTA=0;
+    int numero =1;
+    int numero_less =0;
+    boolean primera_vuelta=false;
+    boolean end= false;
+    boolean btn_mas_pulsado=false;
+    boolean btn_menos_pulsado =false;
+
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +82,7 @@ public class JuegoActivity extends AppCompatActivity {
         CrearPersonajes();
         CrearPersonajesZombies();
         ListaPersonajesSelec();
+        TablaPuntos();
 
         viewPersonajes =(RecyclerView)findViewById(R.id.ViewPersonajes);
         linlayoutmanager =new LinearLayoutManager(this);
@@ -100,7 +120,7 @@ public class JuegoActivity extends AppCompatActivity {
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        Personajes p=listaPersonajesSelec.get(idPersonaje);
                         if (drop[1]){
                             p.carta1=carta2.getDrawable();
                             p.carta2=carta1.getDrawable();
@@ -143,7 +163,7 @@ public class JuegoActivity extends AppCompatActivity {
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        Personajes p=listaPersonajesSelec.get(idPersonaje);
                         if (drop[0]){
                             p.carta2=carta1.getDrawable();
                             p.carta1=carta2.getDrawable();
@@ -186,7 +206,7 @@ public class JuegoActivity extends AppCompatActivity {
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        Personajes p=listaPersonajesSelec.get(idPersonaje);
                         if (drop[0]){
                             p.carta3=carta1.getDrawable();
                             p.carta1=carta3.getDrawable();
@@ -229,7 +249,7 @@ public class JuegoActivity extends AppCompatActivity {
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        Personajes p=listaPersonajesSelec.get(idPersonaje);
                         if (drop[0]){
                             p.carta4=carta1.getDrawable();
                             p.carta1=carta4.getDrawable();
@@ -273,7 +293,7 @@ public class JuegoActivity extends AppCompatActivity {
             public boolean onDrag(View v, DragEvent event) {
                 switch (event.getAction()) {
                     case DragEvent.ACTION_DROP:
-                        Personaje p=listaPersonajesSelec.get(idPersonaje);
+                        Personajes p=listaPersonajesSelec.get(idPersonaje);
                         if (drop[0]){
                             p.carta5=carta1.getDrawable();
                             p.carta1=carta5.getDrawable();
@@ -303,18 +323,18 @@ public class JuegoActivity extends AppCompatActivity {
         modozombie.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Personaje p=listaPersonajesSelec.get(idPersonaje);
+                Personajes p=listaPersonajesSelec.get(idPersonaje);
                 for (int i=0;i<listaPersonajes.size();i++){
-                    Personaje q=listaPersonajes.get(i);
+                    Personajes q=listaPersonajes.get(i);
                     if (p.getNombre().equals(q.getNombre())){
                         if (modozombie.isChecked()){
                             listaPersonajesSelec.add(listaPersonajeszombie.get(i));
-                            Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+                            Personajes r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
                             r.setModozombie(true);
                             CambioModo();
                         }else{
                             listaPersonajesSelec.add(listaPersonajes.get(i));
-                            Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+                            Personajes r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
                             r.setModozombie(false);
                             CambioModo();
                         }
@@ -331,7 +351,7 @@ public class JuegoActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(JuegoActivity.this,CardsActivity.class);
-                Personaje p=listaPersonajesSelec.get(idPersonaje);
+                Personajes p=listaPersonajesSelec.get(idPersonaje);
                 //int a =carta1.getTag();
                 //intent.putExtra(CardsActivity.Keycarta1,a);
                 startActivity(intent);
@@ -342,8 +362,8 @@ public class JuegoActivity extends AppCompatActivity {
     }
 
     private void CambioModo() {
-        Personaje p=listaPersonajesSelec.get(idPersonaje);
-        Personaje r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
+        Personajes p=listaPersonajesSelec.get(idPersonaje);
+        Personajes r=listaPersonajesSelec.get(listaPersonajesSelec.size()-1);
         r.carta1=p.carta1;
         r.carta2=p.carta2;
         r.carta3=p.carta3;
@@ -359,7 +379,7 @@ public class JuegoActivity extends AppCompatActivity {
     }
     private void inicio() {
         for (int i=0; i<listaPersonajesSelec.size();i++){
-            Personaje p=listaPersonajesSelec.get(i);
+            Personajes p=listaPersonajesSelec.get(i);
             p.carta1=getDrawable(R.drawable.cartamano);
             p.carta2=getDrawable(R.drawable.cartamano);
             p.carta3=getDrawable(R.drawable.cartamano);
@@ -378,14 +398,14 @@ public class JuegoActivity extends AppCompatActivity {
             level[i]=false;
         }
         for (int i=0;i<union.length;i++){
-            Personaje p=listaPersonajes.get(union[i]);
+            Personajes p=listaPersonajes.get(union[i]);
             listaPersonajesSelec.add(p);
-            Personaje ps=listaPersonajesSelec.get(i);
+            Personajes ps=listaPersonajesSelec.get(i);
             ps.setLevel(level);
         }
     }
     private void PersonajeSelec() {
-        Personaje p = listaPersonajesSelec.get(idPersonaje);
+        Personajes p = listaPersonajesSelec.get(idPersonaje);
         habAzul.setText(p.getHabAzul());
         habAmarilla.setText(p.getHabAmarilla());
         habNaranja1.setText(p.getHabNaranja1());
@@ -435,7 +455,7 @@ public class JuegoActivity extends AppCompatActivity {
         String habroja3=getString(R.string.mas1alasTiradasDeCombate);
         Drawable foto=getDrawable(R.drawable.pwatts);
         Drawable cara=getDrawable(R.drawable.pwattscara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Joshua";
         habazul=getString(R.string.Socorrista);
@@ -447,7 +467,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.mas1alasTiradasDeCombate);
         foto=getDrawable(R.drawable.pjoshua);
         cara=getDrawable(R.drawable.pjoshuacara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Shannon";
         habazul=getString(R.string.DisparoABocajarro);
@@ -459,7 +479,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Escurridiza);
         foto=getDrawable(R.drawable.pshannon);
         cara=getDrawable(R.drawable.pshannoncara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Grindlock";
         habazul=getString(R.string.Provocacion);
@@ -471,7 +491,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.seisEnElDadoMas1DadoDeCombate);
         foto=getDrawable(R.drawable.pgrindlock);
         cara=getDrawable(R.drawable.pgrindlockcara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Belle";
         habazul=getString(R.string.mas1accionDeMovimientoGratuita);
@@ -483,7 +503,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Ambidiestra);
         foto=getDrawable(R.drawable.pbelle);
         cara=getDrawable(R.drawable.pbellecara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Kim";
         habazul=getString(R.string.Afortunada);
@@ -495,7 +515,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.seisEnElDadoMas1DadoCuerpoACuerpo);
         foto=getDrawable(R.drawable.pkim);
         cara=getDrawable(R.drawable.pkimcara);
-        listaPersonajes.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajes.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
     }
     private void CrearPersonajesZombies() {
         String nombre="watts";
@@ -508,7 +528,7 @@ public class JuegoActivity extends AppCompatActivity {
         String habroja3=getString(R.string.FrenesiCombate);
         Drawable foto=getDrawable(R.drawable.pwattszombie);
         Drawable cara=getDrawable(R.drawable.pwattscarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Joshua";
         habazul=getString(R.string.Socorrista);
@@ -520,7 +540,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Regeneracion);
         foto=getDrawable(R.drawable.pjoshuazombie);
         cara=getDrawable(R.drawable.pjoshuacarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Shannon";
         habazul=getString(R.string.DisparoABocajarro);
@@ -532,7 +552,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.SegadoraCombate);
         foto=getDrawable(R.drawable.pshannonzombie);
         cara=getDrawable(R.drawable.pshannoncarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Grindlock";
         habazul=getString(R.string.Provocacion);
@@ -544,7 +564,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.seisEnElDadoMas1DadoDeCombate);
         foto=getDrawable(R.drawable.pgrindlockzombie);
         cara=getDrawable(R.drawable.pgrindlockcarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Belle";
         habazul=getString(R.string.mas1accionDeMovimientoGratuita);
@@ -556,7 +576,7 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.Ambidiestra);
         foto=getDrawable(R.drawable.pbellezombie);
         cara=getDrawable(R.drawable.pbellecarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
         nombre="Kim";
         habazul=getString(R.string.Afortunada);
@@ -568,7 +588,265 @@ public class JuegoActivity extends AppCompatActivity {
         habroja3=getString(R.string.VinculoZombi);
         foto=getDrawable(R.drawable.pkimzombie);
         cara=getDrawable(R.drawable.pkimcarazombie);
-        listaPersonajeszombie.add(new Personaje(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
+        listaPersonajeszombie.add(new Personajes(nombre,habazul,habamarilla,habnaranja1,habnaranja2,habroja1,habroja2,habroja3,foto,cara));
 
     }
+
+    //TABLA DE PUNTOS
+    private void TablaPuntos() {
+        // creo una lista de Barra y tambien una lista unicamente de niveles para poder modificarlo
+
+        lista =new ArrayList<>();
+        lista_Draw = new ArrayList<>();
+        lista_red =new ArrayList<>();
+
+
+        recy = (RecyclerView) findViewById(R.id.ViewLevel);
+        btn_plus = (Button)findViewById(R.id.btn_more);
+        btn_less = (Button)findViewById(R.id.btn_less);
+
+        recy.setLayoutManager( new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
+
+        llenar_DATOS();
+
+        final AdaptadorBarra adaptarBarra = new AdaptadorBarra(lista);
+
+        recy.setAdapter(adaptarBarra);
+
+
+        btn_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Move_plus(adaptarBarra);
+                if (end) btn_plus.setEnabled(false);
+            }
+        });
+
+
+        btn_less.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (numero_less>0) move_less(adaptarBarra);
+
+
+
+            }
+        });
+    }
+
+    private void move_less(AdaptadorBarra adaptarBarra) {
+
+        if(btn_mas_pulsado&&!primera_vuelta) numero_less =numero-1;
+        if (primera_vuelta){numero_less = 43; primera_vuelta=false; CONTADOR_VUELTA --;}
+        if(end) {numero_less=43;end =false;}
+
+        if(numero_less==43){
+            lista.set(43,new BARRA(lista_red.get(43)));
+            lista.set(42,new BARRA(R.drawable.puntero,lista_red.get(42)));
+            btn_plus.setEnabled(true);
+            primera_vuelta = false;
+            Toast.makeText(getApplicationContext(), "false:" +primera_vuelta, Toast.LENGTH_LONG).show();
+
+            numero_less = 42;
+            numero =43;
+        }
+
+        else if (numero_less>0){
+            lista.set(numero_less,new BARRA(lista_red.get(numero_less)));
+            lista.set(numero_less-1,new BARRA(R.drawable.puntero,lista_red.get(numero_less-1)));
+            btn_plus.setEnabled(true);
+            numero_less--;
+
+        }
+
+        btn_menos_pulsado = true;
+        btn_mas_pulsado =false;
+        adaptarBarra.notifyDataSetChanged();
+    }
+
+    private void Move_plus(AdaptadorBarra adaptarBarra) {
+
+
+        if (!primera_vuelta) {
+            if(btn_menos_pulsado) numero =numero_less +1;
+            lista.set(numero - 1, new BARRA(lista_red.get(numero - 1)));
+            lista.set(numero, new BARRA(R.drawable.puntero, lista_red.get(numero)));
+
+            if (numero < 43){ numero++;numero_less++;}
+
+            else {
+                if (CONTADOR_VUELTA < 1) {
+                    numero = 1;
+                    CONTADOR_VUELTA++;
+                    primera_vuelta = true;
+                    Toast.makeText(getApplicationContext(), "VueltaNumero:" + CONTADOR_VUELTA+primera_vuelta, Toast.LENGTH_LONG).show();
+
+                } else {
+
+                    Toast.makeText(getApplicationContext(), "end:" + end, Toast.LENGTH_LONG).show();
+
+                    end = true;}
+            }
+
+
+        }
+
+        else if (primera_vuelta) {
+            lista.set(43, new BARRA(lista_red.get(43)));
+            lista.set(0, new BARRA(R.drawable.puntero, lista_red.get(0)));
+
+            primera_vuelta = false;
+            numero_less =0;
+
+        }
+
+        btn_mas_pulsado =true;
+
+        btn_menos_pulsado = false;
+
+        adaptarBarra.notifyDataSetChanged();
+    }
+
+
+    private void llenar_DATOS(){
+
+        lista_Draw.add(R.drawable.level_43);
+        lista_Draw.add(R.drawable.level_42);
+        lista_Draw.add(R.drawable.level_41);
+        lista_Draw.add(R.drawable.level_40);
+        lista_Draw.add(R.drawable.level_39);
+        lista_Draw.add(R.drawable.level_38);
+        lista_Draw.add(R.drawable.level_37);
+        lista_Draw.add(R.drawable.level_36);
+        lista_Draw.add(R.drawable.level_35);
+        lista_Draw.add(R.drawable.level_34);
+        lista_Draw.add(R.drawable.level_33);
+        lista_Draw.add(R.drawable.level_32);
+        lista_Draw.add(R.drawable.level_31);
+        lista_Draw.add(R.drawable.level_30);
+        lista_Draw.add(R.drawable.level_29);
+        lista_Draw.add(R.drawable.level_28);
+        lista_Draw.add(R.drawable.level_27);
+        lista_Draw.add(R.drawable.level_26);
+        lista_Draw.add(R.drawable.level_25);
+        lista_Draw.add(R.drawable.level_24);
+        lista_Draw.add(R.drawable.level_23);
+        lista_Draw.add(R.drawable.level_22);
+        lista_Draw.add(R.drawable.level_21);
+        lista_Draw.add(R.drawable.level_20);
+        lista_Draw.add(R.drawable.level_19);
+        lista_Draw.add(R.drawable.level_18);
+        lista_Draw.add(R.drawable.level_17);
+        lista_Draw.add(R.drawable.level_16);
+        lista_Draw.add(R.drawable.level_15);
+        lista_Draw.add(R.drawable.level_14);
+        lista_Draw.add(R.drawable.level_13);
+        lista_Draw.add(R.drawable.level_12);
+        lista_Draw.add(R.drawable.level_11);
+        lista_Draw.add(R.drawable.level_10);
+        lista_Draw.add(R.drawable.level_9);
+        lista_Draw.add(R.drawable.level_8);
+        lista_Draw.add(R.drawable.level_7);
+        lista_Draw.add(R.drawable.level_6);
+        lista_Draw.add(R.drawable.level_5);
+        lista_Draw.add(R.drawable.level_4);
+        lista_Draw.add(R.drawable.level_3);
+        lista_Draw.add(R.drawable.level_2);
+        lista_Draw.add(R.drawable.level_1);
+        lista_Draw.add(R.drawable.level_0);
+
+        lista_red.add(R.drawable.red_0);
+        lista_red.add(R.drawable.red_1);
+        lista_red.add(R.drawable.red_2);
+        lista_red.add(R.drawable.red_3);
+        lista_red.add(R.drawable.red_4);
+        lista_red.add(R.drawable.red_5);
+        lista_red.add(R.drawable.red_6);
+        lista_red.add(R.drawable.red_7);
+        lista_red.add(R.drawable.red_8);
+        lista_red.add(R.drawable.red_9);
+        lista_red.add(R.drawable.red_10);
+        lista_red.add(R.drawable.red_11);
+        lista_red.add(R.drawable.red_12);
+        lista_red.add(R.drawable.red_13);
+        lista_red.add(R.drawable.red_14);
+        lista_red.add(R.drawable.red_15);
+        lista_red.add(R.drawable.red_16);
+        lista_red.add(R.drawable.red_17);
+        lista_red.add(R.drawable.red_18);
+        lista_red.add(R.drawable.red_19);
+        lista_red.add(R.drawable.red_20);
+        lista_red.add(R.drawable.red_21);
+        lista_red.add(R.drawable.red_22);
+        lista_red.add(R.drawable.red_23);
+        lista_red.add(R.drawable.red_24);
+        lista_red.add(R.drawable.red_25);
+        lista_red.add(R.drawable.red_26);
+        lista_red.add(R.drawable.red_27);
+        lista_red.add(R.drawable.red_28);
+        lista_red.add(R.drawable.red_29);
+        lista_red.add(R.drawable.red_30);
+        lista_red.add(R.drawable.red_31);
+        lista_red.add(R.drawable.red_32);
+        lista_red.add(R.drawable.red_33);
+        lista_red.add(R.drawable.red_34);
+        lista_red.add(R.drawable.red_35);
+        lista_red.add(R.drawable.red_36);
+        lista_red.add(R.drawable.red_37);
+        lista_red.add(R.drawable.red_38);
+        lista_red.add(R.drawable.red_39);
+        lista_red.add(R.drawable.red_40);
+        lista_red.add(R.drawable.red_41);
+        lista_red.add(R.drawable.red_42);
+        lista_red.add(R.drawable.red_43);
+        lista.add(new BARRA(R.drawable.puntero,R.drawable.red_0));
+        lista.add(new BARRA(R.drawable.level_1));
+        lista.add(new BARRA(R.drawable.level_2));
+        lista.add(new BARRA(R.drawable.level_3));
+        lista.add(new BARRA(R.drawable.level_4));
+        lista.add(new BARRA(R.drawable.level_5));
+        lista.add(new BARRA(R.drawable.level_6));
+        lista.add(new BARRA(R.drawable.level_7));
+        lista.add(new BARRA(R.drawable.level_8));
+        lista.add(new BARRA(R.drawable.level_9));
+        lista.add(new BARRA(R.drawable.level_10));
+        lista.add(new BARRA(R.drawable.level_11));
+        lista.add(new BARRA(R.drawable.level_12));
+        lista.add(new BARRA(R.drawable.level_13));
+        lista.add(new BARRA(R.drawable.level_14));
+        lista.add(new BARRA(R.drawable.level_15));
+        lista.add(new BARRA(R.drawable.level_16));
+        lista.add(new BARRA(R.drawable.level_17));
+        lista.add(new BARRA(R.drawable.level_18));
+        lista.add(new BARRA(R.drawable.level_19));
+        lista.add(new BARRA(R.drawable.level_20));
+        lista.add(new BARRA(R.drawable.level_21));
+        lista.add(new BARRA(R.drawable.level_22));
+        lista.add(new BARRA(R.drawable.level_23));
+        lista.add(new BARRA(R.drawable.level_24));
+        lista.add(new BARRA(R.drawable.level_25));
+        lista.add(new BARRA(R.drawable.level_26));
+        lista.add(new BARRA(R.drawable.level_27));
+        lista.add(new BARRA(R.drawable.level_28));
+        lista.add(new BARRA(R.drawable.level_29));
+        lista.add(new BARRA(R.drawable.level_30));
+        lista.add(new BARRA(R.drawable.level_31));
+        lista.add(new BARRA(R.drawable.level_32));
+        lista.add(new BARRA(R.drawable.level_33));
+        lista.add(new BARRA(R.drawable.level_34));
+        lista.add(new BARRA(R.drawable.level_35));
+        lista.add(new BARRA(R.drawable.level_36));
+        lista.add(new BARRA(R.drawable.level_37));
+        lista.add(new BARRA(R.drawable.level_38));
+        lista.add(new BARRA(R.drawable.level_39));
+        lista.add(new BARRA(R.drawable.level_40));
+        lista.add(new BARRA(R.drawable.level_41));
+        lista.add(new BARRA(R.drawable.level_42));
+        lista.add(new BARRA(R.drawable.level_43));
+
+    }
+
+
 }

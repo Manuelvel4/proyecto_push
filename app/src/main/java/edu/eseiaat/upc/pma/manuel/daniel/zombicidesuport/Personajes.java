@@ -11,14 +11,14 @@ import android.widget.ImageView;
  * Created by PortatilDani on 17/11/2017.
  */
 
-public class Personaje{
+public class Personajes {
     public String nombre,habAzul, habAmarilla, habNaranja1,habNaranja2, habRoja1,HabRoja2,habRoja3;
     public Drawable foto,cara;
     public Drawable carta1,carta2,carta3,carta4,carta5;
     public boolean invisible,modozombie;
     public boolean[] level;
 
-    public Personaje(String nombre, String habAzul, String habAmarilla, String habNaranja1, String habNaranja2, String habRoja1, String habRoja2, String habRoja3, Drawable foto, Drawable cara) {
+    public Personajes(String nombre, String habAzul, String habAmarilla, String habNaranja1, String habNaranja2, String habRoja1, String habRoja2, String habRoja3, Drawable foto, Drawable cara) {
         this.nombre = nombre;
         this.habAzul = habAzul;
         this.habAmarilla = habAmarilla;
@@ -79,7 +79,7 @@ public class Personaje{
         this.carta5 = carta5;
     }
 
-    public Personaje(String nombre, Drawable cara, boolean invisible) {
+    public Personajes(String nombre, Drawable cara, boolean invisible) {
         this.nombre = nombre;
         this.cara = cara;
         this.invisible = invisible;
@@ -93,7 +93,7 @@ public class Personaje{
         this.level = level;
     }
 
-    protected Personaje(Parcel in) {
+    protected Personajes(Parcel in) {
         nombre = in.readString();
         habAzul = in.readString();
         habAmarilla = in.readString();

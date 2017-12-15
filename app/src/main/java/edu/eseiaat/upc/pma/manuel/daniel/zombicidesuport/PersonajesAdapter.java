@@ -2,9 +2,7 @@ package edu.eseiaat.upc.pma.manuel.daniel.zombicidesuport;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,12 +12,12 @@ import java.util.List;
 
 public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.ViewHolder> implements View.OnClickListener,View.OnLongClickListener{
 
-    private List<Personaje> ListaPersonajes;
+    private List<Personajes> ListaPersonajes;
     private Context context;
     private View.OnClickListener listener;
     private View.OnLongClickListener longlistener;
 
-    public PersonajesAdapter(Context c, List<Personaje> list) {
+    public PersonajesAdapter(Context c, List<Personajes> list) {
         this.context = c;
         ListaPersonajes = list;
     }
@@ -37,7 +35,7 @@ public class PersonajesAdapter extends RecyclerView.Adapter<PersonajesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Personaje item = (Personaje) ListaPersonajes.get(position);
+        Personajes item = (Personajes) ListaPersonajes.get(position);
         holder.cara.setImageDrawable(item.getCara());
         holder.nombre.setText(item.getNombre());
         if(item.isInvisible()){
